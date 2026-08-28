@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   DTA SISTEMAS — Design tokens (CSS custom properties)
+   Espejo de tailwind.config.ts, para uso fuera de clases utility
+   (ej. inline styles dinámicos, SVGs generados, email templates)
+   ============================================================ */
+:root {
+  --dta-navy-900: #0b1730;
+  --dta-navy-800: #101f3d;
+  --dta-blue-600: #1b4de0;
+  --dta-blue-100: #e7eefd;
+  --dta-gray-50: #f6f7fa;
+  --dta-gray-200: #e4e7ec;
+  --dta-gray-600: #5b6472;
+  --dta-black: #0f1115;
+  --dta-white: #ffffff;
+
+  --dta-radius-card: 12px;
+  --dta-radius-input: 8px;
+  --dta-container-max: 1280px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-dta-gray-50 text-dta-black antialiased;
+    font-family: var(--font-inter), system-ui, sans-serif;
+  }
+
+  /* Foco visible obligatorio (accesibilidad, sección 25 del brief) */
+  :focus-visible {
+    outline: 2px solid var(--dta-blue-600);
+    outline-offset: 2px;
+  }
+
+  /* Respeta preferencia de reducción de movimiento */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Contenedor estándar — usado por components/ui/Container.tsx */
+  .dta-container {
+    @apply w-full mx-auto px-6 md:px-16;
+    max-width: var(--dta-container-max);
+  }
+}
