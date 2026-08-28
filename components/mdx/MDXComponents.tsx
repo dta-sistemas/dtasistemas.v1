@@ -15,12 +15,10 @@ export const mdxComponents: MDXComponents = {
   ol: (props) => <ol className="list-decimal pl-5 space-y-2 text-sm text-dta-black/80 mb-4" {...props} />,
   li: (props) => <li className="leading-relaxed" {...props} />,
   strong: (props) => <strong className="font-semibold text-dta-black" {...props} />,
-  a: ({ href = "", ...props }) => (
-    <Link
-      href={href}
-      className="text-dta-blue-600 font-medium hover:underline"
-      {...props}
-    />
+  a: ({ href = "", children }) => (
+    <Link href={href} className="text-dta-blue-600 font-medium hover:underline">
+      {children}
+    </Link>
   ),
   blockquote: (props) => (
     <blockquote
