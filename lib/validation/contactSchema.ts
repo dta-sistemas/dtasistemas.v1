@@ -44,14 +44,14 @@ export function getContactFormSchema(locale: AppLocale) {
   const m = MESSAGES[locale];
 
   return z.object({
-    fullName: z.string().trim().min(2, m.fullName),
-    company: z.string().trim().min(2, m.company),
-    email: z.string().trim().email(m.email),
+    fullName: z.string({ required_error: m.fullName, invalid_type_error: m.fullName }).trim().min(2, m.fullName),
+    company: z.string({ required_error: m.company, invalid_type_error: m.company }).trim().min(2, m.company),
+    email: z.string({ required_error: m.email, invalid_type_error: m.email }).trim().email(m.email),
     phone: z.string().trim().optional().refine((v) => !v || v.length >= 8, m.phone),
     city: z.string().trim().optional(),
     helpType: z.enum(HELP_TYPE_VALUES, { errorMap: () => ({ message: m.helpType }) }),
-    message: z.string().trim().min(10, m.message),
-    turnstileToken: z.string().min(1, m.turnstile),
+    message: z.string({ required_error: m.message, invalid_type_error: m.message }).trim().min(10, m.message),
+    turnstileToken: z.string({ required_error: m.turnstile }).min(1, m.turnstile),
     source: z.string().optional(),
   });
 }

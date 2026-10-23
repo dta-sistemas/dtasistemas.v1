@@ -8,11 +8,11 @@ import type { MDXComponents } from "mdx/types";
  * sitio sin que cada artículo tenga que repetir clases de Tailwind.
  */
 export const mdxComponents: MDXComponents = {
-  h2: (props) => <h2 className="text-h3 text-dta-black mt-10 mb-4" {...props} />,
+  h2: (props) => <h2 className="text-h3 text-dta-black mt-12 mb-4" {...props} />,
   h3: (props) => <h3 className="text-lg font-bold text-dta-black mt-8 mb-3" {...props} />,
-  p: (props) => <p className="text-sm text-dta-black/80 leading-relaxed mb-4" {...props} />,
-  ul: (props) => <ul className="list-disc pl-5 space-y-2 text-sm text-dta-black/80 mb-4" {...props} />,
-  ol: (props) => <ol className="list-decimal pl-5 space-y-2 text-sm text-dta-black/80 mb-4" {...props} />,
+  p: (props) => <p className="text-base text-dta-black/80 leading-7 mb-5" {...props} />,
+  ul: (props) => <ul className="list-disc pl-5 space-y-2 text-base leading-7 text-dta-black/80 marker:text-dta-blue-600 mb-5" {...props} />,
+  ol: (props) => <ol className="list-decimal pl-5 space-y-2 text-base leading-7 text-dta-black/80 marker:font-semibold marker:text-dta-blue-600 mb-5" {...props} />,
   li: (props) => <li className="leading-relaxed" {...props} />,
   strong: (props) => <strong className="font-semibold text-dta-black" {...props} />,
   a: ({ href = "", children }) => (
@@ -22,7 +22,7 @@ export const mdxComponents: MDXComponents = {
   ),
   blockquote: (props) => (
     <blockquote
-      className="border-l-2 border-dta-blue-600 pl-4 italic text-dta-gray-600 my-6"
+      className="border-l-4 border-dta-blue-600 bg-dta-blue-50 rounded-r-input py-3 pl-5 pr-4 italic text-dta-gray-700 my-8"
       {...props}
     />
   ),

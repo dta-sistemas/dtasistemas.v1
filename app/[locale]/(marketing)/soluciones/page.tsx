@@ -3,13 +3,13 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Search } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
-import { Breadcrumb } from "@/components/navigation/Breadcrumb";
 import { SolucionesTabsSection } from "@/components/sections/SolucionesTabsSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildBreadcrumbSchema } from "@/lib/seo/schema";
 import { buildAlternates } from "@/lib/seo/alternates";
 import { getLocalizedSolutions } from "@/lib/i18n/localizedContent";
 import type { AppLocale } from "@/i18n/routing";
+import { PageHero } from "@/components/sections/PageHero";
 
 type Props = { params: Promise<{ locale: AppLocale }> };
 
@@ -31,25 +31,23 @@ export default async function SolucionesPage({ params }: Props) {
     <div>
       <JsonLd data={buildBreadcrumbSchema([{ name: t("eyebrow"), path: "/soluciones" }], locale)} />
 
-      <Section tone="subtle" className="pt-10 pb-10">
-        <Breadcrumb items={[{ label: t("eyebrow") }]} />
-        <div className="grid md:grid-cols-2 gap-8 items-center">
-          <div>
-            <div className="text-label uppercase text-dta-blue-600 mb-3">{t("eyebrow")}</div>
-            <h1 className="text-display-sm md:text-h2 text-dta-black">
-              {t("title1")} <span className="text-dta-blue-600">{t("title2")}</span>
-            </h1>
-            <p className="text-dta-gray-600 mt-4">{t("intro")}</p>
-          </div>
-        </div>
-      </Section>
+      <PageHero
+        breadcrumb={[{ label: t("eyebrow") }]}
+        eyebrow={t("eyebrow")}
+        title={
+          <>
+            {t("title1")} <span className="text-dta-blue-600">{t("title2")}</span>
+          </>
+        }
+        description={t("intro")}
+      />
 
       <Section tone="light">
         <SolucionesTabsSection tabs={tabs} />
 
-        <div className="mt-10 rounded-card bg-dta-gray-50 border border-dta-gray-200 p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-12 flex flex-col items-start justify-between gap-4 rounded-card border border-dta-blue-100 bg-dta-blue-50 p-6 sm:flex-row sm:items-center">
           <div className="flex items-center gap-4">
-            <div className="w-11 h-11 rounded-full bg-dta-blue-100 text-dta-blue-600 flex items-center justify-center shrink-0">
+            <div className="w-11 h-11 rounded-full bg-white text-dta-blue-600 shadow-card flex items-center justify-center shrink-0">
               <Search size={20} aria-hidden="true" />
             </div>
             <div>
@@ -57,7 +55,7 @@ export default async function SolucionesPage({ params }: Props) {
               <div className="text-sm text-dta-gray-600">{t("auditBoxText")}</div>
             </div>
           </div>
-          <Button href="/soluciones/dta-digital-audit" variant="secondary">
+          <Button href="/soluciones/dta-digital-audit" variant="primary">
             {tc("solicitarDiagnostico")}
           </Button>
         </div>

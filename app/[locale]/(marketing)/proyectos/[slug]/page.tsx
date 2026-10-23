@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import Image from "next/image";
 import { Section } from "@/components/ui/Section";
+import { Reveal } from "@/components/ui/Reveal";
+import { PageHero } from "@/components/sections/PageHero";
+import { CTABand } from "@/components/sections/CTABand";
 import { Button } from "@/components/ui/Button";
 import { Link } from "@/i18n/navigation";
-import { Breadcrumb } from "@/components/navigation/Breadcrumb";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ViewTracker } from "@/components/analytics/ViewTracker";
 import { buildCreativeWorkSchema, buildBreadcrumbSchema } from "@/lib/seo/schema";
@@ -53,41 +56,51 @@ export default async function ProyectoDetallePage({ params }: Props) {
         ]}
       />
 
-      <Section tone="subtle" className="pt-10 pb-10">
-        <Breadcrumb items={[{ label: tHub("eyebrow"), href: "/proyectos" }, { label: project.title }]} />
-        <div className="max-w-2xl">
-          <div className="text-label uppercase text-dta-blue-600 mb-3">{project.sectorLabel}</div>
-          <h1 className="text-display-sm md:text-h2 text-dta-black">{project.title}</h1>
-          <p className="text-body-lg text-dta-gray-600 mt-4">{project.summary}</p>
-        </div>
-      </Section>
+      <PageHero
+        breadcrumb={[{ label: tHub("eyebrow"), href: "/proyectos" }, { label: project.title }]}
+        eyebrow={project.sectorLabel}
+        title={project.title}
+        description={project.summary}
+        aside={
+          <div className="relative aspect-video overflow-hidden rounded-card bg-dta-navy-900 shadow-card-hover">
+            <Image src={project.image} alt={project.title} fill sizes="(min-width: 768px) 45vw, 100vw" priority className="object-cover" />
+            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-dta-navy-950/50 to-transparent" />
+          </div>
+        }
+      />
 
       <Section tone="light">
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <div className="text-xs font-bold uppercase text-dta-gray-600/70 mb-2">{t("problemTitle")}</div>
-            <p className="text-sm text-dta-black/80 leading-relaxed">{project.problem}</p>
-          </div>
-          <div>
-            <div className="text-xs font-bold uppercase text-dta-gray-600/70 mb-2">{t("solutionTitle")}</div>
-            <p className="text-sm text-dta-black/80 leading-relaxed">{project.solution}</p>
-          </div>
+        <div className="grid gap-5 md:grid-cols-2">
+          {[
+            { title: t("problemTitle"), text: project.problem },
+            { title: t("solutionTitle"), text: project.solution },
+          ].map((b, i) => (
+            <Reveal key={b.title} delay={i * 90} className="h-full">
+              <div className="h-full rounded-card border border-dta-gray-200 bg-white p-6 shadow-card md:p-7">
+                <div className="mb-3 flex items-center gap-2 text-label uppercase text-dta-blue-600">
+                  <span className="grid h-6 w-6 place-items-center rounded-full bg-dta-blue-100 text-[11px] font-bold">{i + 1}</span>
+                  {b.title}
+                </div>
+                <p className="leading-relaxed text-dta-black/80">{b.text}</p>
+              </div>
+            </Reveal>
+          ))}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 mt-8">
-          <div>
-            <div className="text-xs font-bold uppercase text-dta-gray-600/70 mb-2">{t("technologyTitle")}</div>
+        <div className="mt-5 grid gap-5 md:grid-cols-2">
+          <div className="rounded-card border border-dta-gray-200 bg-dta-gray-50 p-6 md:p-7">
+            <div className="mb-3 text-label uppercase text-dta-gray-600">{t("technologyTitle")}</div>
             <div className="flex flex-wrap gap-2">
               {project.technology.map((techName) => (
-                <span key={techName} className="px-3 py-1 rounded-full bg-dta-gray-50 border border-dta-gray-200 text-xs text-dta-gray-600">
+                <span key={techName} className="rounded-full border border-dta-gray-200 bg-white px-3.5 py-1.5 text-sm text-dta-gray-700">
                   {techName}
                 </span>
               ))}
             </div>
           </div>
-          <div>
-            <div className="text-xs font-bold uppercase text-dta-gray-600/70 mb-2">{t("resultTitle")}</div>
-            <p className="text-sm text-dta-black font-medium leading-relaxed">{project.result}</p>
+          <div className="rounded-card border border-dta-blue-100 border-l-4 border-l-dta-blue-600 bg-dta-blue-50 p-6 md:p-7">
+            <div className="mb-3 text-label uppercase text-dta-blue-600">{t("resultTitle")}</div>
+            <p className="text-lg font-semibold leading-snug text-dta-black">{project.result}</p>
           </div>
         </div>
       </Section>
@@ -109,16 +122,7 @@ export default async function ProyectoDetallePage({ params }: Props) {
         </Section>
       )}
 
-      <Section tone="dark">
-        <div className="text-center max-w-lg mx-auto">
-          <h2 className="text-h2">{t("ctaTitle")}</h2>
-          <div className="flex justify-center mt-5">
-            <Button href="/contacto" variant="secondary" className="bg-white/10 text-white border-white/20 hover:border-white/40">
-              {tc("hablarConDTA")}
-            </Button>
-          </div>
-        </div>
-      </Section>
+      <CTABand title={t("ctaTitle")} href="/contacto" label={tc("hablarConDTA")} />
     </div>
   );
 }

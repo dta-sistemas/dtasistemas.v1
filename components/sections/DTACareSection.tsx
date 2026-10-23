@@ -15,31 +15,35 @@ export function DTACareSection() {
   const tc = useTranslations("common");
 
   return (
-    <Section tone="dark">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
-        <div className="max-w-md">
-          <div className="text-label uppercase text-blue-300 mb-2">{t("careEyebrow")}</div>
-          <h2 className="text-h2">{t("careTitle")}</h2>
-          <div className="mt-6 flex gap-6">
+    <Section tone="dark" className="relative isolate overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="absolute -left-24 top-1/2 -z-10 h-80 w-80 -translate-y-1/2 rounded-full bg-dta-blue-600/20 blur-[110px]"
+      />
+      <div className="flex flex-col justify-between gap-10 md:flex-row md:items-center">
+        <div className="max-w-xl">
+          <div className="mb-3 inline-flex items-center gap-2 text-label uppercase text-dta-blue-300">
+            <span className="h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true" />
+            {t("careEyebrow")}
+          </div>
+          <h2 className="max-w-md text-h2">{t("careTitle")}</h2>
+          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-5">
             {ITEM_KEYS.map((key, i) => (
-              <div key={key} className="flex flex-col gap-2">
+              <div key={key} className="flex items-center gap-3">
                 <IconCircle icon={ICONS[i]} tone="dark" />
                 <div className="text-sm font-semibold">{ti(`${key}.title`)}</div>
               </div>
             ))}
           </div>
         </div>
-        <div className="text-left md:text-right">
-          <div className="text-2xl font-extrabold">
-            {tc("desde")} <span className="text-blue-300">$2,500</span>{" "}
+        <div className="rounded-card border border-white/10 bg-white/5 p-6 text-left backdrop-blur md:min-w-[18rem]">
+          <div className="text-3xl font-extrabold tracking-tight">
+            <span className="mr-1.5 text-sm font-medium text-white/60">{tc("desde")}</span>
+            <span className="text-dta-blue-300">$2,500</span>{" "}
             <span className="text-sm font-medium text-white/60">{t("perMonth")}</span>
           </div>
-          <div className="mt-4">
-            <Button
-              href="/dta-care"
-              variant="secondary"
-              className="bg-white/10 text-white border-white/20 hover:border-white/40"
-            >
+          <div className="mt-5">
+            <Button href="/dta-care" variant="light" className="w-full">
               {t("careCta")}
             </Button>
           </div>

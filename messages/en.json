@@ -7,7 +7,12 @@
     "dta": "DTA",
     "blog": "Blog",
     "contacto": "Contact",
-    "hablemos": "Let's talk"
+    "hablemos": "Let's talk",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "primaryLabel": "Main navigation",
+    "skipToContent": "Skip to content",
+    "breadcrumbLabel": "Breadcrumb"
   },
   "footer": {
     "tagline": "Technology to understand, automate and grow your business.",
@@ -58,7 +63,13 @@
     "perMonth": "MXN / month",
     "careCta": "Learn about DTA Care",
     "finalCtaTitle": "Tell us what you want to improve.",
-    "finalCtaText": "You don't need to know what technology you need. We'll help you figure it out."
+    "finalCtaText": "You don't need to know what technology you need. We'll help you figure it out.",
+    "diagramClients": "Customers",
+    "diagramWeb": "Web",
+    "diagramCrm": "CRM",
+    "diagramData": "Data",
+    "diagramAI": "AI & automation",
+    "diagramCenter": "SYSTEM"
   },
   "processSteps": {
     "entender": { "title": "Understand", "description": "We analyze your business processes, tools and data." },
@@ -281,5 +292,15 @@
     "text": "The link might be broken, or the page may have moved. Try going home or check out our solutions.",
     "cta1": "Go home",
     "cta2": "View solutions"
+  },
+  "legal": {
+    "lastUpdated": "Last updated",
+    "tocTitle": "On this page",
+    "questionsTitle": "Questions about how your information is handled?",
+    "questionsText": "Write to us and we will answer personally. If you prefer, we can sign a confidentiality agreement before you share any data.",
+    "questionsCta": "Write to DTA",
+    "privacyLabel": "Privacy notice",
+    "termsLabel": "Terms and conditions",
+    "otherDocPrefix": "See also:"
   }
 }

@@ -114,13 +114,13 @@ export default async function DesignSystemPage({ params }: Props) {
 
       <Section tone="light">
         <h2 className="text-h2 mb-6">Process steps</h2>
-        <div className="flex flex-col md:flex-row gap-4">
+        <ol className="grid gap-6 md:grid-cols-5">
           <ProcessStep number="1" title="Entender" description="Analizamos procesos, herramientas y datos." />
           <ProcessStep number="2" title="Diseñar" description="Definimos la arquitectura de la solución." />
           <ProcessStep number="3" title="Construir" description="Desarrollamos sistemas robustos y escalables." />
           <ProcessStep number="4" title="Conectar" description="Integramos sistemas y automatizamos procesos." />
           <ProcessStep number="5" title="Evolucionar" description="Medimos resultados y mejoramos." isLast />
-        </div>
+        </ol>
       </Section>
 
       <Section tone="dark">

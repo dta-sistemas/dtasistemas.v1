@@ -3,13 +3,12 @@
 import { Link } from "@/i18n/navigation";
 import { ArrowRight } from "lucide-react";
 import { analytics } from "@/lib/analytics/events";
-
-type Variant = "primary" | "secondary" | "dark";
+import { buttonClasses, arrowClasses, type ButtonVariant } from "../ui/buttonStyles";
 
 type TrackedButtonProps = {
   href: string;
   children: React.ReactNode;
-  variant?: Variant;
+  variant?: ButtonVariant;
   showArrow?: boolean;
   className?: string;
   /** Identifica el CTA en el evento cta_click, ej. "analizar-mi-empresa". */
@@ -17,15 +16,6 @@ type TrackedButtonProps = {
   /** Identifica dónde vive el CTA, ej. "hero", "final-cta", "digital-audit-page". */
   trackSource: string;
 };
-
-const variantStyles: Record<Variant, string> = {
-  primary: "bg-dta-blue-600 text-white hover:bg-blue-700",
-  secondary: "bg-white text-dta-black border border-dta-gray-200 hover:border-dta-black",
-  dark: "bg-dta-navy-900 text-white hover:bg-dta-navy-800",
-};
-
-const base =
-  "inline-flex items-center gap-2 px-5 py-3 rounded-full text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-dta-blue-600";
 
 /**
  * Igual que components/ui/Button.tsx en variante "href", pero dispara
@@ -36,6 +26,7 @@ const base =
  *
  * onClick no bloquea la navegación: <Link> sigue resolviendo el href con
  * normalidad, el evento solo se registra como efecto secundario del clic.
+ * Los estilos vienen de ../ui/buttonStyles (compartidos con <Button>).
  */
 export function TrackedButton({
   href,
@@ -50,10 +41,10 @@ export function TrackedButton({
     <Link
       href={href}
       onClick={() => analytics.ctaClick(trackLabel, trackSource)}
-      className={`${base} ${variantStyles[variant]} ${className}`}
+      className={buttonClasses(variant, className)}
     >
       {children}
-      {showArrow && <ArrowRight size={16} aria-hidden="true" />}
+      {showArrow && <ArrowRight size={16} className={arrowClasses} aria-hidden="true" />}
     </Link>
   );
 }

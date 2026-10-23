@@ -4,6 +4,8 @@ type SectionHeadingProps = {
   highlight?: string; // fragmento del título a resaltar en azul, ej. "trabaje como un sistema"
   subtitle?: string;
   align?: "left" | "center";
+  /** "dark" para usar sobre fondos navy. */
+  tone?: "light" | "dark";
 };
 
 /**
@@ -16,26 +18,38 @@ export function SectionHeading({
   highlight,
   subtitle,
   align = "left",
+  tone = "light",
 }: SectionHeadingProps) {
-  const alignment = align === "center" ? "text-center mx-auto" : "text-left";
+  const isCenter = align === "center";
+  const isDark = tone === "dark";
+  const idx = highlight ? title.indexOf(highlight) : -1;
 
   return (
-    <div className={`max-w-2xl ${alignment}`}>
+    <div className={`max-w-2xl ${isCenter ? "text-center mx-auto" : "text-left"}`}>
       {eyebrow && (
-        <div className="text-label uppercase text-dta-blue-600 mb-3">{eyebrow}</div>
+        <div
+          className={`mb-4 inline-flex items-center gap-2 text-label uppercase ${
+            isDark ? "text-dta-blue-300" : "text-dta-blue-600"
+          }`}
+        >
+          <span className="h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true" />
+          {eyebrow}
+        </div>
       )}
-      <h2 className="text-display-sm md:text-h2 text-dta-black">
-        {highlight ? (
+      <h2 className={isDark ? "text-h2 text-white" : "text-h2 text-dta-black"}>
+        {idx >= 0 && highlight ? (
           <>
-            {title.split(highlight)[0]}
-            <span className="text-dta-blue-600">{highlight}</span>
-            {title.split(highlight)[1]}
+            {title.slice(0, idx)}
+            <span className={isDark ? "text-dta-blue-300" : "text-dta-blue-600"}>{highlight}</span>
+            {title.slice(idx + highlight.length)}
           </>
         ) : (
           title
         )}
       </h2>
-      {subtitle && <p className="text-body-lg text-dta-gray-600 mt-4">{subtitle}</p>}
+      {subtitle && (
+        <p className={`text-body-lg mt-4 ${isDark ? "text-white/70" : "text-dta-gray-600"}`}>{subtitle}</p>
+      )}
     </div>
   );
 }

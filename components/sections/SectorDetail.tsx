@@ -1,9 +1,11 @@
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, ArrowRight } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Section } from "../ui/Section";
 import { Button } from "../ui/Button";
 import { Link } from "@/i18n/navigation";
-import { Breadcrumb } from "../navigation/Breadcrumb";
+import { PageHero, HeroPanel } from "./PageHero";
+import { CTABand } from "./CTABand";
+import { Reveal } from "../ui/Reveal";
 import { JsonLd } from "../seo/JsonLd";
 import { ViewTracker } from "../analytics/ViewTracker";
 import { buildServiceSchema, buildBreadcrumbSchema } from "@/lib/seo/schema";
@@ -39,68 +41,80 @@ export async function SectorDetail({ sector, locale }: { sector: Sector; locale:
         ]}
       />
 
-      <Section tone="subtle" className="pt-10 pb-10">
-        <Breadcrumb items={[{ label: tHub("eyebrow"), href: "/sectores" }, { label: sector.name }]} />
-        <div className="max-w-2xl">
-          <div className="text-label uppercase text-dta-blue-600 mb-3">{sector.name}</div>
-          <h1 className="text-display-sm md:text-h2 text-dta-black">{sector.headline}</h1>
-          <p className="text-body-lg text-dta-gray-600 mt-4">{sector.heroDescription}</p>
-          <div className="flex gap-3 mt-6">
-            <Button href="/contacto?intent=audit" variant="primary">
-              {tc("analizarMiEmpresa")}
-            </Button>
-          </div>
-        </div>
-      </Section>
+      <PageHero
+        breadcrumb={[{ label: tHub("eyebrow"), href: "/sectores" }, { label: sector.name }]}
+        eyebrow={sector.name}
+        title={sector.headline}
+        description={sector.heroDescription}
+        actions={
+          <Button href="/contacto?intent=audit" variant="primary">
+            {tc("analizarMiEmpresa")}
+          </Button>
+        }
+        aside={
+          <HeroPanel>
+            <span className="grid h-12 w-12 place-items-center rounded-xl bg-white/10 text-dta-blue-300">
+              <sector.icon size={22} aria-hidden="true" />
+            </span>
+            <div className="mt-5 text-xl font-bold uppercase tracking-wide">{sector.name}</div>
+            <div className="mt-5 flex flex-wrap gap-2 border-t border-white/10 pt-5">
+              {sector.tags.map((tag) => (
+                <span key={tag} className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-sm text-white/80">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </HeroPanel>
+        }
+      />
 
       <Section tone="light">
-        <h2 className="text-h3 text-dta-black mb-4">
+        <h2 className="mb-6 text-h3 text-dta-black">
           {t("problemsPrefix")} {sector.name.toLowerCase()}
         </h2>
-        <div className="grid sm:grid-cols-2 gap-4">
-          {sector.problems.map((p) => (
-            <div key={p} className="flex items-start gap-2 text-sm text-dta-black/80 rounded-card border border-dta-gray-200 p-4">
-              <CheckCircle2 size={14} className="text-dta-blue-600 shrink-0 mt-0.5" aria-hidden="true" /> {p}
-            </div>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {sector.problems.map((p, i) => (
+            <Reveal key={p} delay={(i % 2) * 80} className="h-full">
+              <div className="flex h-full items-start gap-3 rounded-card border border-dta-gray-200 bg-dta-gray-50 p-5 text-[15px] leading-relaxed text-dta-black/85">
+                <CheckCircle2 size={17} className="mt-0.5 shrink-0 text-dta-blue-600" aria-hidden="true" /> {p}
+              </div>
+            </Reveal>
           ))}
         </div>
       </Section>
 
       <Section tone="subtle">
-        <h2 className="text-h3 text-dta-black mb-4">
+        <h2 className="mb-6 text-h3 text-dta-black">
           {t("howWeHelpPrefix")} {sector.name.toLowerCase()}
         </h2>
-        <div className="grid md:grid-cols-3 gap-5">
-          {resolvedSolutions.map((s) => {
+        <div className="grid gap-5 md:grid-cols-3">
+          {resolvedSolutions.map((s, i) => {
             const Icon = s.icon;
             return (
-              <Link
-                key={s.slug}
-                href={s.href}
-                className="rounded-card border border-dta-gray-200 bg-white p-5 hover:shadow-md transition-shadow block focus-visible:outline focus-visible:outline-2 focus-visible:outline-dta-blue-600"
-              >
-                <Icon size={20} className="text-dta-blue-600 mb-3" aria-hidden="true" />
-                <div className="font-bold text-dta-black text-sm">{s.title}</div>
-                <p className="text-sm text-dta-gray-600 mt-1">{s.angle}</p>
-              </Link>
+              <Reveal key={s.slug} delay={i * 80} className="h-full">
+                <Link
+                  href={s.href}
+                  className="group flex h-full flex-col rounded-card border border-dta-gray-200 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-dta-blue-600/40 hover:shadow-card-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-dta-blue-600"
+                >
+                  <div className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-dta-blue-100 text-dta-blue-600 transition-colors duration-300 group-hover:bg-dta-blue-600 group-hover:text-white">
+                    <Icon size={20} aria-hidden="true" />
+                  </div>
+                  <div className="font-bold text-dta-black">{s.title}</div>
+                  <p className="mt-1.5 flex-1 text-sm leading-relaxed text-dta-gray-600">{s.angle}</p>
+                  <ArrowRight size={16} className="mt-4 text-dta-blue-600 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
+                </Link>
+              </Reveal>
             );
           })}
         </div>
       </Section>
 
-      <Section tone="dark">
-        <div className="text-center max-w-lg mx-auto">
-          <h2 className="text-h2">{t("ctaTitle")}</h2>
-          <p className="text-white/70 mt-2 text-sm">
-            {t("ctaTextPrefix")} {sector.name.toLowerCase()}.
-          </p>
-          <div className="flex justify-center mt-5">
-            <Button href="/soluciones/dta-digital-audit" variant="secondary" className="bg-white/10 text-white border-white/20 hover:border-white/40">
-              {tc("solicitarDiagnostico")}
-            </Button>
-          </div>
-        </div>
-      </Section>
+      <CTABand
+        title={t("ctaTitle")}
+        text={`${t("ctaTextPrefix")} ${sector.name.toLowerCase()}.`}
+        href="/soluciones/dta-digital-audit"
+        label={tc("solicitarDiagnostico")}
+      />
     </div>
   );
 }
