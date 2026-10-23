@@ -38,7 +38,11 @@ export function ContactChannelRow({ iconKey, label, value, href, trackEvent }: C
   }
 
   const content = (
-    <div className="flex items-center justify-between p-4 rounded-card bg-white border border-dta-gray-200">
+    <div
+      className={`flex items-center justify-between rounded-card border border-dta-gray-200 bg-white p-4 transition-all duration-200 ${
+        href ? "group-hover:border-dta-blue-600/40 group-hover:shadow-card" : ""
+      }`}
+    >
       <div className="flex items-center gap-3">
         <IconCircle icon={Icon} />
         <div>
@@ -46,7 +50,7 @@ export function ContactChannelRow({ iconKey, label, value, href, trackEvent }: C
           <div className="text-sm font-semibold text-dta-black">{value}</div>
         </div>
       </div>
-      {href && <ChevronRight size={16} className="text-dta-gray-600" aria-hidden="true" />}
+      {href && <ChevronRight size={16} className="text-dta-gray-400 transition-transform group-hover:translate-x-0.5 group-hover:text-dta-blue-600" aria-hidden="true" />}
     </div>
   );
 
@@ -56,7 +60,7 @@ export function ContactChannelRow({ iconKey, label, value, href, trackEvent }: C
     <a
       href={href}
       onClick={handleClick}
-      className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-dta-blue-600 rounded-card"
+      className="group block rounded-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-dta-blue-600"
     >
       {content}
     </a>

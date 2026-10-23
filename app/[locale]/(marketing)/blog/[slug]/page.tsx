@@ -5,7 +5,6 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { Calendar, Clock } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
-import { Breadcrumb } from "@/components/navigation/Breadcrumb";
 import { BlogCard } from "@/components/cards/BlogCard";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ViewTracker } from "@/components/analytics/ViewTracker";
@@ -16,6 +15,8 @@ import { getAllSlugs, getPostBySlug, getRelatedPosts, slugifyCategory } from "@/
 import { getLocalizedSolutionBySlug, getLocalizedSectorBySlug } from "@/lib/i18n/localizedContent";
 import { formatDate } from "@/lib/formatDate";
 import { routing, type AppLocale } from "@/i18n/routing";
+import { PageHero } from "@/components/sections/PageHero";
+import { CTABand } from "@/components/sections/CTABand";
 
 type Props = { params: Promise<{ locale: AppLocale; slug: string }> };
 
@@ -65,36 +66,34 @@ export default async function BlogPostPage({ params }: Props) {
         ]}
       />
 
-      <Section tone="subtle" className="pt-10 pb-8">
-        <Breadcrumb
-          items={[
-            { label: t("eyebrow"), href: "/blog" },
-            { label: post.category, href: `/blog/categoria/${slugifyCategory(post.category)}` },
-            { label: post.title },
-          ]}
-        />
-        <div className="max-w-2xl">
-          <div className="text-label uppercase text-dta-blue-600 mb-3">{post.category}</div>
-          <h1 className="text-display-sm md:text-h2 text-dta-black">{post.title}</h1>
-          <div className="flex items-center gap-3 text-xs text-dta-gray-600 mt-4">
-            <span className="flex items-center gap-1">
-              <Calendar size={11} aria-hidden="true" /> {formatDate(post.date, locale)}
+      <PageHero
+        breadcrumb={[
+          { label: t("eyebrow"), href: "/blog" },
+          { label: post.category, href: `/blog/categoria/${slugifyCategory(post.category)}` },
+          { label: post.title },
+        ]}
+        eyebrow={post.category}
+        title={post.title}
+        meta={
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-dta-gray-600">
+            <span className="flex items-center gap-1.5">
+              <Calendar size={14} aria-hidden="true" /> {formatDate(post.date, locale)}
             </span>
-            <span className="flex items-center gap-1">
-              <Clock size={11} aria-hidden="true" /> {post.readingTime} {locale === "en" ? "min read" : "min de lectura"}
+            <span className="flex items-center gap-1.5">
+              <Clock size={14} aria-hidden="true" /> {post.readingTime} {locale === "en" ? "min read" : "min de lectura"}
             </span>
             <span>· {post.author}</span>
           </div>
-        </div>
-      </Section>
+        }
+      />
 
       <Section tone="light">
-        <div className="max-w-2xl">
+        <div className="max-w-[42rem]">
           <MDXRemote source={post.content} components={mdxComponents} />
         </div>
 
         {(relatedSolution || relatedSector) && (
-          <div className="max-w-2xl mt-10 rounded-card bg-dta-blue-100 border border-dta-blue-100 p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="max-w-2xl mt-10 rounded-card bg-dta-blue-50 border border-dta-blue-100 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="text-sm text-dta-black">
               {relatedSolution && (
                 <>
@@ -134,16 +133,7 @@ export default async function BlogPostPage({ params }: Props) {
         </Section>
       )}
 
-      <Section tone="dark">
-        <div className="text-center max-w-lg mx-auto">
-          <h2 className="text-h2">{t("ctaTitle")}</h2>
-          <div className="flex justify-center mt-5">
-            <Button href="/soluciones/dta-digital-audit" variant="secondary" className="bg-white/10 text-white border-white/20 hover:border-white/40">
-              {tc("solicitarDiagnostico")}
-            </Button>
-          </div>
-        </div>
-      </Section>
+      <CTABand title={t("ctaTitle")} href="/soluciones/dta-digital-audit" label={tc("solicitarDiagnostico")} />
     </div>
   );
 }

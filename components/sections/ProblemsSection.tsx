@@ -1,10 +1,11 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Clock, Folder, BarChart3, Boxes } from "lucide-react";
+import { Clock, Folder, BarChart3, Boxes, ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Section } from "../ui/Section";
 import { Button } from "../ui/Button";
+import { Reveal } from "../ui/Reveal";
 
 const ROWS = [
   { key: "manuales", icon: Clock, href: "/soluciones/inteligencia-artificial" },
@@ -20,23 +21,29 @@ export function ProblemsSection() {
 
   return (
     <Section tone="light">
-      <div className="text-center max-w-xl mx-auto mb-10">
+      <Reveal className="mx-auto mb-12 max-w-xl text-center">
         <h2 className="text-h2 text-dta-black">{t("problemsTitle")}</h2>
-      </div>
-      <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
-        {ROWS.map((row) => (
-          <Link
-            key={row.key}
-            href={row.href}
-            className="rounded-card border border-dta-gray-200 bg-dta-gray-50 p-5 hover:border-dta-blue-600 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-dta-blue-600"
-          >
-            <row.icon size={18} className="text-dta-blue-600 mb-3" aria-hidden="true" />
-            <p className="text-sm font-medium text-dta-black">{tp(`${row.key}.text`)}</p>
-            <div className="text-xs font-semibold text-dta-blue-600 mt-3">{tp(`${row.key}.link`)} →</div>
-          </Link>
+      </Reveal>
+      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+        {ROWS.map((row, i) => (
+          <Reveal key={row.key} delay={i * 70} className="h-full">
+            <Link
+              href={row.href}
+              className="group flex h-full flex-col rounded-card border border-dta-gray-200 bg-dta-gray-50 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-dta-blue-600/40 hover:bg-white hover:shadow-card-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-dta-blue-600"
+            >
+              <div className="grid h-10 w-10 place-items-center rounded-xl bg-white text-dta-blue-600 shadow-card transition-colors duration-300 group-hover:bg-dta-blue-600 group-hover:text-white">
+                <row.icon size={18} aria-hidden="true" />
+              </div>
+              <p className="mt-4 flex-1 text-[15px] font-medium leading-snug text-dta-black">{tp(`${row.key}.text`)}</p>
+              <div className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-dta-blue-600">
+                {tp(`${row.key}.link`)}
+                <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
+              </div>
+            </Link>
+          </Reveal>
         ))}
       </div>
-      <div className="flex justify-center mt-8">
+      <div className="mt-10 flex justify-center">
         <Button href="/soluciones" variant="primary">
           {tc("encontrarOportunidades")}
         </Button>

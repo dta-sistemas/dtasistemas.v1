@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Search, CheckCircle2, Users, ClipboardList, Map, Sparkles } from "lucide-react";
+import { Search, CheckCircle2, Users, ClipboardList, Sparkles } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
-import { Breadcrumb } from "@/components/navigation/Breadcrumb";
 import { ProcessStep } from "@/components/ui/ProcessStep";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildServiceSchema, buildBreadcrumbSchema } from "@/lib/seo/schema";
 import { buildAlternates } from "@/lib/seo/alternates";
 import type { AppLocale } from "@/i18n/routing";
+import { PageHero, HeroPanel } from "@/components/sections/PageHero";
+import { CTABand } from "@/components/sections/CTABand";
+import { AuditPreview } from "@/components/sections/DigitalAudit";
 
 type Props = { params: Promise<{ locale: AppLocale }> };
 
@@ -54,25 +56,33 @@ export default async function DigitalAuditPage({ params }: Props) {
         ]}
       />
 
-      <Section tone="subtle" className="pt-10 pb-10">
-        <Breadcrumb items={[{ label: tHub("eyebrow"), href: "/soluciones" }, { label: "DTA Digital Audit" }]} />
-        <div className="max-w-2xl">
-          <div className="text-label uppercase text-dta-blue-600 mb-3">{t("eyebrow")}</div>
-          <h1 className="text-display-sm md:text-h2 text-dta-black">{t("title")}</h1>
-          <p className="text-body-lg text-dta-gray-600 mt-4">{t("intro")}</p>
-          <div className="flex items-center gap-4 mt-6">
-            <div className="text-2xl font-extrabold text-dta-black">
-              {tc("desde")} <span className="text-dta-blue-600">$4,900</span>{" "}
-              <span className="text-sm font-medium text-dta-gray-600">MXN</span>
+      <PageHero
+        breadcrumb={[{ label: tHub("eyebrow"), href: "/soluciones" }, { label: "DTA Digital Audit" }]}
+        eyebrow={t("eyebrow")}
+        title={t("title")}
+        description={t("intro")}
+        aside={
+          <HeroPanel>
+            <div className="text-3xl font-extrabold tracking-tight">
+              <span className="mr-1.5 text-sm font-medium text-white/60">{tc("desde")}</span>
+              <span className="text-dta-blue-300">$4,900</span>{" "}
+              <span className="text-sm font-medium text-white/60">MXN</span>
             </div>
-          </div>
-          <div className="mt-4">
-            <Button href="/contacto?intent=audit" variant="primary">
-              {tc("solicitarDiagnostico")}
-            </Button>
-          </div>
-        </div>
-      </Section>
+            <ul className="mt-6 space-y-3 border-t border-white/10 pt-6">
+              {receives.slice(0, 3).map((r) => (
+                <li key={r} className="flex items-start gap-2.5 text-sm text-white/80">
+                  <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-dta-blue-300" aria-hidden="true" /> {r}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-7">
+              <Button href="/contacto?intent=audit" variant="light" className="w-full">
+                {tc("solicitarDiagnostico")}
+              </Button>
+            </div>
+          </HeroPanel>
+        }
+      />
 
       <Section tone="light">
         <h2 className="text-h3 text-dta-black mb-2">{t("whoTitle")}</h2>
@@ -81,10 +91,12 @@ export default async function DigitalAuditPage({ params }: Props) {
         <h2 className="text-h3 text-dta-black mb-4">{t("analyzeTitle")}</h2>
         <div className="grid sm:grid-cols-3 gap-5">
           {analysisItems.map((it) => (
-            <div key={it.title} className="rounded-card border border-dta-gray-200 p-5">
-              <it.icon size={20} className="text-dta-blue-600 mb-3" aria-hidden="true" />
-              <div className="font-bold text-dta-black text-sm">{it.title}</div>
-              <p className="text-sm text-dta-gray-600 mt-1">{it.text}</p>
+            <div key={it.title} className="group rounded-card border border-dta-gray-200 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-dta-blue-600/40 hover:shadow-card-hover">
+              <div className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-dta-blue-100 text-dta-blue-600 transition-colors duration-300 group-hover:bg-dta-blue-600 group-hover:text-white">
+                <it.icon size={20} aria-hidden="true" />
+              </div>
+              <div className="font-bold text-dta-black">{it.title}</div>
+              <p className="mt-1.5 text-sm leading-relaxed text-dta-gray-600">{it.text}</p>
             </div>
           ))}
         </div>
@@ -94,7 +106,7 @@ export default async function DigitalAuditPage({ params }: Props) {
         <h2 className="text-h3 text-dta-black mb-4">{t("receiveTitle")}</h2>
         <ul className="space-y-3 max-w-xl">
           {receives.map((r) => (
-            <li key={r} className="flex items-start gap-2 text-sm text-dta-black/80">
+            <li key={r} className="flex items-start gap-2.5 text-[15px] text-dta-black/80">
               <CheckCircle2 size={15} className="text-dta-blue-600 shrink-0 mt-0.5" aria-hidden="true" /> {r}
             </li>
           ))}
@@ -102,12 +114,12 @@ export default async function DigitalAuditPage({ params }: Props) {
       </Section>
 
       <Section tone="light">
-        <h2 className="text-h3 text-dta-black mb-6">{t("processTitle")}</h2>
-        <div className="flex flex-col md:flex-row gap-4 justify-between">
+        <h2 className="mb-10 text-h3 text-dta-black">{t("processTitle")}</h2>
+        <ol className="grid gap-6 md:grid-cols-[repeat(auto-fit,minmax(0,1fr))]">
           {process.map((s, i) => (
             <ProcessStep key={s.title} number={String(i + 1)} title={s.title} description={s.description} isLast={i === process.length - 1} />
           ))}
-        </div>
+        </ol>
       </Section>
 
       <Section tone="subtle">
@@ -116,28 +128,17 @@ export default async function DigitalAuditPage({ params }: Props) {
             <h2 className="text-h3 text-dta-black mb-4">{t("benefitsTitle")}</h2>
             <ul className="space-y-3">
               {benefits.map((b) => (
-                <li key={b} className="flex items-start gap-2 text-sm text-dta-black/80">
+                <li key={b} className="flex items-start gap-2.5 text-[15px] text-dta-black/80">
                   <Sparkles size={15} className="text-dta-blue-600 shrink-0 mt-0.5" aria-hidden="true" /> {b}
                 </li>
               ))}
             </ul>
           </div>
-          <div className="rounded-card bg-white border border-dta-gray-200 p-6 flex items-center justify-center aspect-video text-dta-gray-200">
-            <Map size={48} aria-hidden="true" />
-          </div>
+          <AuditPreview />
         </div>
       </Section>
 
-      <Section tone="dark">
-        <div className="text-center max-w-lg mx-auto">
-          <h2 className="text-h2">{t("finalCtaTitle")}</h2>
-          <div className="flex justify-center mt-5">
-            <Button href="/contacto?intent=audit" variant="secondary" className="bg-white/10 text-white border-white/20 hover:border-white/40">
-              {tc("solicitarDiagnostico")}
-            </Button>
-          </div>
-        </div>
-      </Section>
+      <CTABand title={t("finalCtaTitle")} href="/contacto?intent=audit" label={tc("solicitarDiagnostico")} />
     </div>
   );
 }

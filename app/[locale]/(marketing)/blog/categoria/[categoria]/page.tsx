@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Section } from "@/components/ui/Section";
-import { Breadcrumb } from "@/components/navigation/Breadcrumb";
 import { BlogCard } from "@/components/cards/BlogCard";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildBreadcrumbSchema } from "@/lib/seo/schema";
@@ -11,6 +10,7 @@ import { buildAlternates } from "@/lib/seo/alternates";
 import { getAllCategories, getCategoryBySlug, getPostsByCategory, slugifyCategory } from "@/lib/blog";
 import { formatDate } from "@/lib/formatDate";
 import { routing, type AppLocale } from "@/i18n/routing";
+import { PageHero } from "@/components/sections/PageHero";
 
 type Props = { params: Promise<{ locale: AppLocale; categoria: string }> };
 
@@ -50,15 +50,20 @@ export default async function CategoriaPage({ params }: Props) {
         )}
       />
 
-      <Section tone="subtle" className="pt-10 pb-10">
-        <Breadcrumb items={[{ label: t("eyebrow"), href: "/blog" }, { label: category }]} />
-        <h1 className="text-display-sm md:text-h2 text-dta-black">
-          {t("categoryArticlesTitle")} <span className="text-dta-blue-600">{category}</span>
-        </h1>
-        <Link href="/blog" className="text-sm text-dta-blue-600 font-semibold hover:underline mt-3 inline-block">
-          ← {t("backToCategories")}
-        </Link>
-      </Section>
+      <PageHero
+        breadcrumb={[{ label: t("eyebrow"), href: "/blog" }, { label: category }]}
+        eyebrow={t("eyebrow")}
+        title={
+          <>
+            {t("categoryArticlesTitle")} <span className="text-dta-blue-600">{category}</span>
+          </>
+        }
+        actions={
+          <Link href="/blog" className="text-sm font-semibold text-dta-blue-600 hover:underline">
+            ← {t("backToCategories")}
+          </Link>
+        }
+      />
 
       <Section tone="light">
         {posts.length > 0 ? (

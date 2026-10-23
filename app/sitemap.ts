@@ -47,6 +47,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/dta-care", changeFrequency: "monthly", priority: 0.6 },
     { path: "/blog", changeFrequency: "weekly", priority: 0.8 },
     { path: "/contacto", changeFrequency: "yearly", priority: 0.7 },
+    { path: "/aviso-de-privacidad", changeFrequency: "yearly", priority: 0.3 },
+    { path: "/terminos-y-condiciones", changeFrequency: "yearly", priority: 0.3 },
     ...solutions.map((s) => ({ path: s.href, changeFrequency: "monthly" as const, priority: 0.8 })),
     ...sectors.map((s) => ({ path: s.href, changeFrequency: "monthly" as const, priority: 0.8 })),
     ...projects.map((p) => ({ path: `/proyectos/${p.slug}`, changeFrequency: "yearly" as const, priority: 0.6 })),

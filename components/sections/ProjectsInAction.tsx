@@ -4,6 +4,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { Section } from "../ui/Section";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Button } from "../ui/Button";
+import { Reveal } from "../ui/Reveal";
 import { ProjectCard } from "../cards/ProjectCard";
 import { getLocalizedProjects } from "@/lib/i18n/localizedContent";
 import type { AppLocale } from "@/i18n/routing";
@@ -17,19 +18,20 @@ export function ProjectsInAction() {
   return (
     <Section tone="light">
       <SectionHeading eyebrow={t("projectsEyebrow")} title={t("projectsTitle")} align="center" />
-      <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-5 mt-10">
-        {featured.map((p) => (
-          <ProjectCard
-            key={p.slug}
-            sector={p.sectorLabel}
-            title={p.title}
-            description={p.summary}
-            image={p.image}
-            href={`/proyectos/${p.slug}`}
-          />
+      <div className="mt-12 grid gap-5 sm:grid-cols-2 md:grid-cols-4">
+        {featured.map((p, i) => (
+          <Reveal key={p.slug} delay={i * 80} className="h-full">
+            <ProjectCard
+              sector={p.sectorLabel}
+              title={p.title}
+              description={p.summary}
+              image={p.image}
+              href={`/proyectos/${p.slug}`}
+            />
+          </Reveal>
         ))}
       </div>
-      <div className="flex justify-center mt-8">
+      <div className="mt-10 flex justify-center">
         <Button href="/proyectos" variant="secondary">
           {tc("verMasProyectos")}
         </Button>

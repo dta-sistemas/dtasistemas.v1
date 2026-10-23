@@ -3,7 +3,9 @@ import { getTranslations } from "next-intl/server";
 import { Section } from "../ui/Section";
 import { Button } from "../ui/Button";
 import { Link } from "@/i18n/navigation";
-import { Breadcrumb } from "../navigation/Breadcrumb";
+import { PageHero, HeroPanel } from "./PageHero";
+import { CTABand } from "./CTABand";
+import { Reveal } from "../ui/Reveal";
 import { JsonLd } from "../seo/JsonLd";
 import { ViewTracker } from "../analytics/ViewTracker";
 import { buildServiceSchema, buildBreadcrumbSchema } from "@/lib/seo/schema";
@@ -40,50 +42,60 @@ export async function SolutionDetail({ solution, locale }: { solution: Solution;
         ]}
       />
 
-      <Section tone="subtle" className="pt-10 pb-10">
-        <Breadcrumb items={[{ label: tHub("eyebrow"), href: "/soluciones" }, { label: solution.title }]} />
-        <div className="max-w-2xl">
-          <div className="text-label uppercase text-dta-blue-600 mb-3">{solution.title}</div>
-          <h1 className="text-display-sm md:text-h2 text-dta-black">{solution.problemHeadline}</h1>
-          <p className="text-body-lg text-dta-gray-600 mt-4">{solution.longDescription}</p>
-          <div className="flex gap-3 mt-6">
-            <Button href="/contacto?intent=audit" variant="primary">
-              {tc("analizarMiEmpresa")}
-            </Button>
-          </div>
-        </div>
-      </Section>
+      <PageHero
+        breadcrumb={[{ label: tHub("eyebrow"), href: "/soluciones" }, { label: solution.title }]}
+        eyebrow={solution.title}
+        title={solution.problemHeadline}
+        description={solution.longDescription}
+        actions={
+          <Button href="/contacto?intent=audit" variant="primary">
+            {tc("analizarMiEmpresa")}
+          </Button>
+        }
+        aside={
+          <HeroPanel>
+            <span className="grid h-12 w-12 place-items-center rounded-xl bg-white/10 text-dta-blue-300">
+              <solution.icon size={22} aria-hidden="true" />
+            </span>
+            <div className="mt-5 text-xl font-bold">{solution.title}</div>
+            <ul className="mt-5 space-y-3 border-t border-white/10 pt-5">
+              {solution.bullets.map((b) => (
+                <li key={b} className="flex items-start gap-2.5 text-sm text-white/80">
+                  <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-dta-blue-300" aria-hidden="true" /> {b}
+                </li>
+              ))}
+            </ul>
+          </HeroPanel>
+        }
+      />
 
       <Section tone="light">
-        <div className="grid md:grid-cols-2 gap-10">
-          <div>
-            <h2 className="text-h3 text-dta-black mb-4">{t("useCasesTitle")}</h2>
-            <ul className="space-y-3">
-              {solution.useCases.map((u) => (
-                <li key={u} className="flex items-start gap-2 text-sm text-dta-black/80">
-                  <CheckCircle2 size={15} className="text-dta-blue-600 shrink-0 mt-0.5" aria-hidden="true" /> {u}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h2 className="text-h3 text-dta-black mb-4">{t("deliverablesTitle")}</h2>
-            <ul className="space-y-3">
-              {solution.deliverables.map((d) => (
-                <li key={d} className="flex items-start gap-2 text-sm text-dta-black/80">
-                  <CheckCircle2 size={15} className="text-dta-blue-600 shrink-0 mt-0.5" aria-hidden="true" /> {d}
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="grid gap-6 md:grid-cols-2">
+          {[
+            { title: t("useCasesTitle"), items: solution.useCases },
+            { title: t("deliverablesTitle"), items: solution.deliverables },
+          ].map((block, i) => (
+            <Reveal key={block.title} delay={i * 90} className="h-full">
+              <div className="h-full rounded-card border border-dta-gray-200 bg-white p-6 shadow-card md:p-8">
+                <h2 className="mb-5 text-h3 text-dta-black">{block.title}</h2>
+                <ul className="space-y-3.5">
+                  {block.items.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-[15px] leading-relaxed text-dta-black/80">
+                      <CheckCircle2 size={16} className="mt-1 shrink-0 text-dta-blue-600" aria-hidden="true" /> {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          ))}
         </div>
 
         {solution.technologies && solution.technologies.length > 0 && (
-          <div className="mt-10">
-            <h2 className="text-h3 text-dta-black mb-3">{t("technologiesTitle")}</h2>
+          <div className="mt-12">
+            <h2 className="mb-4 text-h3 text-dta-black">{t("technologiesTitle")}</h2>
             <div className="flex flex-wrap gap-2">
               {solution.technologies.map((techName) => (
-                <span key={techName} className="px-3 py-1 rounded-full bg-dta-gray-50 border border-dta-gray-200 text-xs text-dta-gray-600">
+                <span key={techName} className="rounded-full border border-dta-gray-200 bg-dta-gray-50 px-3.5 py-1.5 text-sm text-dta-gray-700">
                   {techName}
                 </span>
               ))}
@@ -94,14 +106,15 @@ export async function SolutionDetail({ solution, locale }: { solution: Solution;
 
       {related.length > 0 && (
         <Section tone="subtle">
-          <h2 className="text-h3 text-dta-black mb-4">{t("relatedSectorsTitle")}</h2>
+          <h2 className="mb-5 text-h3 text-dta-black">{t("relatedSectorsTitle")}</h2>
           <div className="flex flex-wrap gap-3">
             {related.map((s) => (
               <Link
                 key={s.slug}
                 href={s.href}
-                className="px-4 py-2 rounded-full bg-white border border-dta-gray-200 text-sm font-medium text-dta-black hover:border-dta-blue-600 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-dta-blue-600"
+                className="inline-flex items-center gap-2 rounded-full border border-dta-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-dta-black shadow-card transition-all hover:-translate-y-0.5 hover:border-dta-blue-600 hover:text-dta-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-dta-blue-600"
               >
+                <s.icon size={15} className="text-dta-blue-600" aria-hidden="true" />
                 {s.name}
               </Link>
             ))}
@@ -109,17 +122,7 @@ export async function SolutionDetail({ solution, locale }: { solution: Solution;
         </Section>
       )}
 
-      <Section tone="dark">
-        <div className="text-center max-w-lg mx-auto">
-          <h2 className="text-h2">{t("ctaTitle")}</h2>
-          <p className="text-white/70 mt-2 text-sm">{t("ctaText")}</p>
-          <div className="flex justify-center mt-5">
-            <Button href="/soluciones/dta-digital-audit" variant="secondary" className="bg-white/10 text-white border-white/20 hover:border-white/40">
-              {tc("solicitarDiagnostico")}
-            </Button>
-          </div>
-        </div>
-      </Section>
+      <CTABand title={t("ctaTitle")} text={t("ctaText")} href="/soluciones/dta-digital-audit" label={tc("solicitarDiagnostico")} />
     </div>
   );
 }

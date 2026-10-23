@@ -7,7 +7,12 @@
     "dta": "DTA",
     "blog": "Blog",
     "contacto": "Contacto",
-    "hablemos": "Hablemos"
+    "hablemos": "Hablemos",
+    "menuOpen": "Abrir menú",
+    "menuClose": "Cerrar menú",
+    "primaryLabel": "Navegación principal",
+    "skipToContent": "Saltar al contenido",
+    "breadcrumbLabel": "Ruta de navegación"
   },
   "footer": {
     "tagline": "Tecnología para entender, automatizar y hacer crecer tu empresa.",
@@ -58,7 +63,13 @@
     "perMonth": "MXN / mes",
     "careCta": "Conocer DTA Care",
     "finalCtaTitle": "Cuéntanos qué quieres mejorar.",
-    "finalCtaText": "No necesitas saber qué tecnología necesitas. Nosotros te ayudamos a descubrirlo."
+    "finalCtaText": "No necesitas saber qué tecnología necesitas. Nosotros te ayudamos a descubrirlo.",
+    "diagramClients": "Clientes",
+    "diagramWeb": "Web",
+    "diagramCrm": "CRM",
+    "diagramData": "Datos",
+    "diagramAI": "IA y automatización",
+    "diagramCenter": "SISTEMA"
   },
   "processSteps": {
     "entender": { "title": "Entender", "description": "Analizamos procesos, herramientas y datos de tu empresa." },
@@ -281,5 +292,15 @@
     "text": "Puede que el enlace esté roto o que la página se haya movido. Prueba desde el inicio o revisa nuestras soluciones.",
     "cta1": "Ir al inicio",
     "cta2": "Ver soluciones"
+  },
+  "legal": {
+    "lastUpdated": "Última actualización",
+    "tocTitle": "En esta página",
+    "questionsTitle": "¿Tienes dudas sobre el manejo de tu información?",
+    "questionsText": "Escríbenos y te respondemos personalmente. Si lo prefieres, podemos firmar un acuerdo de confidencialidad antes de que compartas cualquier dato.",
+    "questionsCta": "Escribir a DTA",
+    "privacyLabel": "Aviso de privacidad",
+    "termsLabel": "Términos y condiciones",
+    "otherDocPrefix": "Consulta también:"
   }
 }
