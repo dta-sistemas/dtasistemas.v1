@@ -14,6 +14,10 @@ export type SubmitLeadResult =
 
 const RATE_LIMIT_MESSAGE = { es: "Demasiados intentos. Intenta de nuevo en", en: "Too many attempts. Try again in" };
 const GENERIC_ERROR = { es: "Revisa los campos marcados.", en: "Please check the marked fields." };
+const DELIVERY_ERROR = {
+  es: "No pudimos enviar tu mensaje en este momento. Inténtalo de nuevo o escríbenos a contacto@dtasistemas.com.",
+  en: "We couldn't send your message right now. Please try again or write to us at contacto@dtasistemas.com.",
+};
 const TURNSTILE_ERROR = {
   es: "No pudimos verificar que eres una persona. Intenta de nuevo.",
   en: "We couldn't verify you're human. Please try again.",
@@ -54,12 +58,22 @@ export async function submitLead(values: ContactFormValues & { locale: AppLocale
     return { success: false, error: TURNSTILE_ERROR[locale] };
   }
 
-  const results = await Promise.allSettled([syncLeadToCrm(lead), sendLeadEmail(lead)]);
-  results.forEach((r, i) => {
-    if (r.status === "rejected") {
-      console.error(`[leads] Falló el paso ${i === 0 ? "syncLeadToCrm" : "sendLeadEmail"}:`, r.reason);
-    }
-  });
+  const [crm, email] = await Promise.allSettled([syncLeadToCrm(lead), sendLeadEmail(lead, locale)]);
+
+  // El CRM es secundario (hoy es un stub): si falla se registra pero no frena al visitante.
+  if (crm.status === "rejected") {
+    console.error("[leads] Falló syncLeadToCrm:", crm.reason);
+  }
+
+  // El correo es el canal que hoy entrega el lead al equipo. Si falla NO se debe mostrar
+  // "mensaje enviado": el visitante lo sabe y puede escribir directamente.
+  if (email.status === "rejected") {
+    console.error("[leads] Falló sendLeadEmail — lead NO notificado:", email.reason, {
+      company: lead.company,
+      email: lead.email,
+    });
+    return { success: false, error: DELIVERY_ERROR[locale] };
+  }
 
   return { success: true };
 }
