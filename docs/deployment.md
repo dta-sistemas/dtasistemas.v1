@@ -44,7 +44,7 @@ Recomendación concreta por variable:
 
 | Variable | Production | Preview | Notas |
 |---|---|---|---|
-| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` / `TURNSTILE_SECRET_KEY` | Sitio real de Turnstile | Sitio de **testing** de Turnstile (Cloudflare ofrece site keys de prueba que siempre pasan/fallan) | Evita gastar cuota real de Turnstile en cada preview de PR |
+| `TURNSTILE_SITE_KEY` / `TURNSTILE_SECRET_KEY` | Sitio real de Turnstile | Sitio de **testing** de Turnstile (Cloudflare ofrece site keys de prueba que siempre pasan/fallan) | Evita gastar cuota real de Turnstile en cada preview de PR |
 | `NEXT_PUBLIC_GA4_MEASUREMENT_ID` | Propiedad GA4 real | **Vacía** o una propiedad GA4 separada de pruebas | No contaminar los datos de producción con tráfico de previews |
 | `NEXT_PUBLIC_GTM_CONTAINER_ID` | Contenedor real | Vacía | Mismo motivo |
 | `EMAIL_PROVIDER_API_KEY` / `CRM_API_KEY` | Reales | **Vacías** (los stubs de `lib/leads/` ya hacen `console.warn` sin romper el flujo si faltan, ver Fase 7) | Evita que un lead de prueba en un preview le llegue al equipo comercial |

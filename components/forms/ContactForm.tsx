@@ -30,7 +30,7 @@ export function ContactForm({ source, defaultHelpType }: ContactFormProps) {
   const [hasStarted, setHasStarted] = useState(false);
   // Sin site key (desarrollo / aún sin configurar) TurnstileWidget no renderiza el
   // desafío y nunca entrega token: exigirlo dejaba el botón deshabilitado para siempre.
-  const turnstileRequired = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
+  const turnstileRequired = Boolean(process.env.TURNSTILE_SITE_KEY);
 
   const {
     register,
@@ -54,7 +54,7 @@ export function ContactForm({ source, defaultHelpType }: ContactFormProps) {
       message: "",
       helpType: defaultHelpType,
       source,
-      turnstileToken: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ? "" : "dev-no-turnstile",
+      turnstileToken: process.env.TURNSTILE_SITE_KEY ? "" : "dev-no-turnstile",
     },
   });
   const turnstileToken = watch("turnstileToken");
