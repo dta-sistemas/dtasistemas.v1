@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: "DTA Sistemas",
       locale: locale === "en" ? "en_US" : "es_MX",
       type: "website",
-      images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "DTA Sistemas" }],
+      images: [{ url: "/images/og-default.png", width: 1200, height: 630, alt: "DTA Sistemas" }],
     },
     twitter: { card: "summary_large_image", site: "@dtasistemas" },
     verification: { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION },
