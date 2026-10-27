@@ -143,7 +143,7 @@ export default async function DesignSystemPage({ params }: Props) {
         <h2 className="text-h2 mb-6">Canales de contacto</h2>
         <div className="grid sm:grid-cols-2 gap-3 max-w-xl">
           {[
-            { icon: Phone, label: "Teléfono / WhatsApp", value: "+52 998 123 4567" },
+            { icon: Phone, label: "Teléfono / WhatsApp", value: "+52 000 000 0000" },
             { icon: Mail, label: "Correo electrónico", value: "contacto@dtasistemas.com" },
             { icon: MapPin, label: "Oficina", value: "Cancún, Quintana Roo" },
             { icon: Clock, label: "Horario", value: "Lun–Vie 09:00–18:00" },

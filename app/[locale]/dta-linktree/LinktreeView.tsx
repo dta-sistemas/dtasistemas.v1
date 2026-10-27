@@ -135,7 +135,7 @@ export function LinktreeView() {
             <a href="tel:+529981234567" className="flex items-center gap-3">
               <Phone size={16} className="text-blue-400 shrink-0" aria-hidden="true" />
               <div>
-                <div className="font-medium">+52 998 123 4567</div>
+                <div className="font-medium">+52 000 000 0000</div>
                 <div className="text-xs text-white/50">{t.schedule}</div>
               </div>
             </a>

@@ -108,7 +108,7 @@ export function ContactForm({ source, defaultHelpType }: ContactFormProps) {
       <TextField label={t("email")} type="email" required placeholder={t("emailPlaceholder")} error={errors.email?.message} {...register("email")} />
 
       <div className="grid sm:grid-cols-2 gap-4">
-        <TextField label={t("phone")} type="tel" placeholder="+52 998 123 4567" error={errors.phone?.message} {...register("phone")} />
+        <TextField label={t("phone")} type="tel" placeholder="+52 000 000 0000" error={errors.phone?.message} {...register("phone")} />
         <TextField label={t("city")} placeholder={t("cityPlaceholder")} error={errors.city?.message} {...register("city")} />
       </div>
 

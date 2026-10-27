@@ -38,7 +38,7 @@ export default async function ContactoPage({ params, searchParams }: Props) {
   const t = await getTranslations({ locale, namespace: "contactoPage" });
 
   const channels = [
-    { iconKey: "phone" as const, label: t("channelPhone"), value: "+52 998 123 4567", href: "https://wa.me/529981234567", trackEvent: "whatsapp" as const },
+    { iconKey: "phone" as const, label: t("channelPhone"), value: "+52 000 000 0000", href: "https://wa.me/52000000000", trackEvent: "whatsapp" as const },
     { iconKey: "mail" as const, label: t("channelEmail"), value: "contacto@dtasistemas.com", href: "mailto:contacto@dtasistemas.com", trackEvent: "email" as const },
     { iconKey: "mapPin" as const, label: t("channelOffice"), value: "Cancún, Quintana Roo, México" },
     { iconKey: "clock" as const, label: t("channelSchedule"), value: t("scheduleValue") },
