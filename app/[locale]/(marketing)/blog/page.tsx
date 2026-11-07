@@ -35,7 +35,7 @@ export default async function BlogPage({ params }: Props) {
         eyebrow={t("eyebrow")}
         title={
           <>
-            {t("title1")} <span className="text-dta-blue-600">{t("title2")}</span>
+            {t("title1")} {t("title2")}
           </>
         }
         description={t("intro")}
@@ -44,7 +44,7 @@ export default async function BlogPage({ params }: Props) {
       <Section tone="light">
         {categories.length > 0 && (
           <div className="flex flex-wrap gap-2 mb-8">
-            <Link href="/blog" aria-current="page" className="rounded-full bg-dta-blue-600 px-4 py-2 text-sm font-medium text-white">
+            <Link href="/blog" aria-current="page" className="rounded-full bg-dta-black px-4 py-2 text-sm font-medium text-white">
               {t("allCategories")}
             </Link>
             {categories.map((c) => (
@@ -59,7 +59,7 @@ export default async function BlogPage({ params }: Props) {
           </div>
         )}
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-5">
+        <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2 md:grid-cols-3">
           {posts.map((p) => (
             <BlogCard
               key={p.slug}

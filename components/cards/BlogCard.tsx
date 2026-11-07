@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { Calendar, Clock } from "lucide-react";
 
@@ -8,48 +7,34 @@ type BlogCardProps = {
   title: string;
   date: string; // ya formateada para mostrar
   readingTime: number;
-  image: string;
+  /** Sin uso: las tarjetas son tipográficas (public/images/blog no existe en el repo y mostraba imágenes rotas). */
+  image?: string;
   href: string;
 };
 
-/** Card de artículo — usada en /blog, /blog/categoria/[categoria] y "artículos relacionados". */
-export function BlogCard({ category, categoryHref, title, date, readingTime, image, href }: BlogCardProps) {
+/** Artículo del blog: categoría, titular serif, fecha y tiempo de lectura. Sin imagen. */
+export function BlogCard({ category, categoryHref, title, date, readingTime, href }: BlogCardProps) {
   return (
-    <div className="group overflow-hidden rounded-card border border-dta-gray-200 bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
-      <Link
-        href={href}
-        className="relative block aspect-video overflow-hidden bg-dta-navy-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-dta-blue-600"
-      >
-        <Image
-          src={image}
-          alt={title}
-          fill
-          sizes="(min-width: 768px) 25vw, 50vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
+    <article className="group flex h-full flex-col border-t border-dta-black pt-5">
+      <Link href={categoryHref} className="w-fit font-mono text-xs text-dta-blue-600 hover:underline">
+        {category}
       </Link>
-      <div className="p-5">
-        <Link
-          href={categoryHref}
-          className="mb-2 inline-block text-label uppercase text-dta-blue-600 hover:underline"
-        >
-          {category}
-        </Link>
+      <h3 className="mt-3 font-serif text-2xl leading-snug text-dta-black">
         <Link
           href={href}
-          className="block rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-dta-blue-600"
+          className="rounded transition-colors duration-150 group-hover:text-dta-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-dta-blue-600"
         >
-          <h3 className="font-bold leading-snug text-dta-black transition-colors group-hover:text-dta-blue-600">{title}</h3>
+          {title}
         </Link>
-        <div className="mt-3 flex items-center gap-3 text-xs text-dta-gray-600">
-          <span className="flex items-center gap-1">
-            <Calendar size={12} aria-hidden="true" /> {date}
-          </span>
-          <span className="flex items-center gap-1">
-            <Clock size={12} aria-hidden="true" /> {readingTime} min
-          </span>
-        </div>
+      </h3>
+      <div className="mt-auto flex items-center gap-4 pt-6 text-sm text-dta-gray-600">
+        <span className="flex items-center gap-1.5">
+          <Calendar size={13} aria-hidden="true" /> {date}
+        </span>
+        <span className="flex items-center gap-1.5">
+          <Clock size={13} aria-hidden="true" /> {readingTime} min
+        </span>
       </div>
-    </div>
+    </article>
   );
 }

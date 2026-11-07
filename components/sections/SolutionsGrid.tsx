@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { SolutionCard } from "../cards/SolutionCard";
+import { SolutionTile } from "../cards/SolutionTile";
 import { getLocalizedSolutions, getLocalizedDtaCareSummary } from "@/lib/i18n/localizedContent";
 import type { AppLocale } from "@/i18n/routing";
 
@@ -43,10 +43,9 @@ export function SolutionsGrid({ activeTab }: { activeTab: string }) {
   return (
     <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
       {filtered.map((s) => (
-        <SolutionCard
+        <SolutionTile
           key={s.key}
-          number={s.number}
-          icon={s.icon}
+          slug={s.key}
           title={s.title}
           description={s.description}
           bullets={s.bullets}

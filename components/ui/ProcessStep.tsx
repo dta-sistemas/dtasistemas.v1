@@ -31,11 +31,11 @@ export function ProcessStep({ number, title, description, isLast = false }: Proc
         <>
           <span
             aria-hidden="true"
-            className="absolute left-[17px] top-11 -bottom-6 w-px bg-dta-gray-300 md:hidden"
+            className="absolute left-[17px] top-11 -bottom-6 w-px bg-dta-blue-600 md:hidden"
           />
           <span
             aria-hidden="true"
-            className="absolute top-[18px] hidden h-px bg-dta-gray-300 md:block"
+            className="absolute top-[18px] hidden h-0.5 bg-dta-blue-600 md:block"
             style={{ left: "calc(50% + 26px)", right: "calc(-50% + 2px)" }}
           />
         </>

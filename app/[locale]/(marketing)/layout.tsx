@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SkipLink } from "@/components/layout/SkipLink";
+import { MobileCTA } from "@/components/layout/MobileCTA";
 
 /**
  * Layout del route group (marketing) — aquí viven Navbar y Footer,
@@ -16,6 +17,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
         {children}
       </main>
       <Footer />
+      <MobileCTA />
     </>
   );
 }

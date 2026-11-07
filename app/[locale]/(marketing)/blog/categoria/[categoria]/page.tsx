@@ -67,7 +67,7 @@ export default async function CategoriaPage({ params }: Props) {
 
       <Section tone="light">
         {posts.length > 0 ? (
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-5">
+          <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2 md:grid-cols-3">
             {posts.map((p) => (
               <BlogCard
                 key={p.slug}

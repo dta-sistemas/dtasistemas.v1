@@ -72,11 +72,8 @@ export default async function DTACarePage({ params }: Props) {
       <Section tone="light">
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-5">
           {careItems.map((it) => (
-            <div key={it.title} className="group rounded-card border border-dta-gray-200 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-dta-blue-600/40 hover:shadow-card-hover">
-              <div className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-dta-blue-100 text-dta-blue-600 transition-colors duration-300 group-hover:bg-dta-blue-600 group-hover:text-white">
-                <it.icon size={20} aria-hidden="true" />
-              </div>
-              <div className="font-bold text-dta-black">{it.title}</div>
+            <div key={it.title} className="border-t border-dta-black pt-5">
+              <div className="font-serif text-xl text-dta-black">{it.title}</div>
               <p className="mt-1.5 text-sm leading-relaxed text-dta-gray-600">{it.description}</p>
             </div>
           ))}

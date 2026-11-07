@@ -43,20 +43,22 @@ const config: Config = {
             600: "#5B6472", // texto secundario
             700: "#3E4654", // texto secundario de mayor contraste
           },
-          black: "#0F1115", // texto principal / headlines
+          black: "#0B1730", // TINTA: texto principal y titulares. Es el azul marino de marca (antes #0F1115, casi negro puro)
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        sans: ["var(--font-hanken)", "system-ui", "sans-serif"],
+        serif: ["var(--font-newsreader)", "Georgia", "serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       fontSize: {
-        display: ["3.25rem", { lineHeight: "1.08", fontWeight: "700", letterSpacing: "-0.025em" }], // 52px
-        "display-sm": ["2.5rem", { lineHeight: "1.1", fontWeight: "700", letterSpacing: "-0.02em" }], // 40px mobile
+        display: ["clamp(2.5rem, 1.6rem + 3.6vw, 4rem)", { lineHeight: "1.04", fontWeight: "500", letterSpacing: "-0.025em" }], // 52px
+        "display-sm": ["2.5rem", { lineHeight: "1.1", fontWeight: "500", letterSpacing: "-0.02em" }], // 40px mobile
         // h1 de páginas internas: fluido 32px → 44px (antes display-sm fijo a 40px en móvil y h2 de 36px en desktop: el h1 era MÁS chico que el display en móvil y casi igual al h2).
-        h1: ["clamp(2rem, 1.45rem + 2.3vw, 2.75rem)", { lineHeight: "1.1", fontWeight: "700", letterSpacing: "-0.025em" }],
+        h1: ["clamp(2rem, 1.45rem + 2.3vw, 2.75rem)", { lineHeight: "1.1", fontWeight: "500", letterSpacing: "-0.02em" }],
         // h2 fluido: 28px en móvil → 36px en escritorio (antes era fijo y,
         // combinado con display-sm, el h2 de móvil era MÁS grande que el de desktop).
-        h2: ["clamp(1.75rem, 1.35rem + 1.6vw, 2.25rem)", { lineHeight: "1.2", fontWeight: "700", letterSpacing: "-0.02em" }],
+        h2: ["clamp(1.75rem, 1.35rem + 1.6vw, 2.5rem)", { lineHeight: "1.15", fontWeight: "500", letterSpacing: "-0.02em" }],
         h3: ["1.25rem", { lineHeight: "1.3", fontWeight: "600", letterSpacing: "-0.01em" }], // 20px
         "body-lg": ["1.125rem", { lineHeight: "1.65", fontWeight: "400" }], // 18px
         label: [
@@ -72,30 +74,15 @@ const config: Config = {
         card: "0 1px 2px rgba(11,23,48,0.04), 0 1px 3px rgba(11,23,48,0.06)",
         "card-hover": "0 18px 40px -12px rgba(11,23,48,0.22), 0 4px 10px -4px rgba(11,23,48,0.08)",
         nav: "0 1px 0 rgba(11,23,48,0.06), 0 12px 24px -16px rgba(11,23,48,0.22)",
-        glow: "0 0 0 1px rgba(157,181,247,0.25), 0 0 40px -4px rgba(27,77,224,0.55)",
       },
       keyframes: {
         "fade-up": {
           "0%": { opacity: "0", transform: "translateY(8px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        float: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-6px)" },
-        },
-        dash: {
-          to: { strokeDashoffset: "-8" },
-        },
-        "pulse-ring": {
-          "0%": { transform: "scale(0.9)", opacity: "0.55" },
-          "100%": { transform: "scale(1.9)", opacity: "0" },
-        },
       },
       animation: {
         "fade-up": "fade-up 0.25s ease-out both",
-        float: "float 5s ease-in-out infinite",
-        dash: "dash 1.2s linear infinite",
-        "pulse-ring": "pulse-ring 2.8s ease-out infinite",
       },
       maxWidth: {
         container: "1280px",

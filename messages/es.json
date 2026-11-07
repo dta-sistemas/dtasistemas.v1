@@ -12,7 +12,8 @@
     "menuClose": "Cerrar menú",
     "primaryLabel": "Navegación principal",
     "skipToContent": "Saltar al contenido",
-    "breadcrumbLabel": "Ruta de navegación"
+    "breadcrumbLabel": "Ruta de navegación",
+    "diagnostico": "Solicitar diagnóstico"
   },
   "footer": {
     "tagline": "Tecnología para entender, automatizar y hacer crecer tu empresa.",
@@ -36,7 +37,9 @@
     "desde": "Desde",
     "verProyecto": "Ver proyecto",
     "verSoluciones": "Ver soluciones",
-    "leerMas": "Leer más"
+    "leerMas": "Leer más",
+    "whatsapp": "Escribir por WhatsApp",
+    "verSector": "Ver sector"
   },
   "home": {
     "heroTitle1": "Tu empresa ya tiene tecnología.",
@@ -54,7 +57,7 @@
     "sectorsEyebrow": "Sectores en los que trabajamos",
     "sectorsTitle": "Hablamos el idioma de tu industria",
     "projectsEyebrow": "Soluciones en acción",
-    "projectsTitle": "Casos reales, resultados concretos",
+    "projectsTitle": "Cómo lo resolvemos",
     "auditEyebrow": "DTA Digital Audit",
     "auditTitle": "Descubre dónde tu empresa está perdiendo tiempo.",
     "auditText": "Analizamos tus procesos, herramientas y datos y construimos un roadmap tecnológico para tu empresa.",
@@ -69,7 +72,46 @@
     "diagramCrm": "CRM",
     "diagramData": "Datos",
     "diagramAI": "IA y automatización",
-    "diagramCenter": "SISTEMA"
+    "diagramCenter": "SISTEMA",
+    "ledger": {
+      "title": "Reserva, suite 4, del 12 al 15 de diciembre",
+      "todayLabel": "Hoy",
+      "withLabel": "Con DTA",
+      "todayNote": "Cuatro herramientas, tres versiones. Alguien las concilia a mano, cada día.",
+      "withNote": "Una sola versión, actualizada sola en las cuatro herramientas.",
+      "example": "Ejemplo ilustrativo",
+      "chipOff": "sin conectar",
+      "chipOn": "conectado",
+      "windowTitle": "dta · sincronización",
+      "windowStatus": "4 fuentes",
+      "logTitle": "Registro",
+      "logToday": [
+        "09:14  Booking.com devuelve 2 noches, el sistema dice 3",
+        "09:15  WhatsApp: pregunta abierta, sin dato estructurado"
+      ],
+      "logSynced": [
+        "09:16  Conectores activos: 4 de 4",
+        "09:16  Conflicto resuelto: 3 noches",
+        "09:16  Una versión, actualizada sola"
+      ],
+      "resultLabel": "Versión única",
+      "nights": "3 noches",
+      "sources": [
+        { "name": "Excel de operaciones", "today": "3 noches" },
+        { "name": "Booking.com", "today": "2 noches" },
+        { "name": "WhatsApp de recepción", "today": "¿Sigue la de 3?" },
+        { "name": "Sistema de la recepción", "today": "3 noches" }
+      ]
+    },
+    "projectsText": "Casos ilustrativos de cómo conectamos sistemas en empresas como la tuya.",
+    "caseBadge": "Caso ilustrativo",
+    "caseBefore": "Antes",
+    "caseAfter": "Después",
+    "caseResult": "Resultado",
+    "sectorsText": "Cada sector tiene sus propias herramientas desconectadas. Estas son las que más conectamos.",
+    "stackTitle": "Construimos con tecnología probada",
+    "stackText": "Elegimos las herramientas según el problema de tu empresa, no al revés. Esta es la base con la que trabajamos.",
+    "stackLabel": "Stack"
   },
   "processSteps": {
     "entender": { "title": "Entender", "description": "Analizamos procesos, herramientas y datos de tu empresa." },
@@ -260,6 +302,7 @@
     "form": {
       "fullName": "Nombre completo",
       "fullNamePlaceholder": "Ej. Juan Pérez",
+      "moreDetails": "Más detalles (opcional)",
       "company": "Empresa",
       "companyPlaceholder": "Ej. Nombre de tu empresa",
       "email": "Correo electrónico",

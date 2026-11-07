@@ -22,7 +22,7 @@ export const mdxComponents: MDXComponents = {
   ),
   blockquote: (props) => (
     <blockquote
-      className="border-l-4 border-dta-blue-600 bg-dta-blue-50 rounded-r-input py-3 pl-5 pr-4 italic text-dta-gray-700 my-8"
+      className="my-8 border-y border-dta-gray-200 py-6 font-serif text-xl leading-snug text-dta-black"
       {...props}
     />
   ),

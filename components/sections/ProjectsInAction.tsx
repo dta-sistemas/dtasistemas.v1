@@ -1,11 +1,8 @@
-"use client";
-
 import { useTranslations, useLocale } from "next-intl";
 import { Section } from "../ui/Section";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Button } from "../ui/Button";
-import { Reveal } from "../ui/Reveal";
-import { ProjectCard } from "../cards/ProjectCard";
+import { CaseCard } from "../cards/CaseCard";
 import { getLocalizedProjects } from "@/lib/i18n/localizedContent";
 import type { AppLocale } from "@/i18n/routing";
 
@@ -17,21 +14,13 @@ export function ProjectsInAction() {
 
   return (
     <Section tone="light">
-      <SectionHeading eyebrow={t("projectsEyebrow")} title={t("projectsTitle")} align="center" />
-      <div className="mt-12 grid gap-5 sm:grid-cols-2 md:grid-cols-4">
+      <SectionHeading title={t("projectsTitle")} subtitle={t("projectsText")} />
+      <div className="mt-12 grid gap-x-8 gap-y-14 md:grid-cols-2">
         {featured.map((p, i) => (
-          <Reveal key={p.slug} delay={i * 80} className="h-full">
-            <ProjectCard
-              sector={p.sectorLabel}
-              title={p.title}
-              description={p.summary}
-              image={p.image}
-              href={`/proyectos/${p.slug}`}
-            />
-          </Reveal>
+          <CaseCard key={p.slug} slug={p.slug} sector={p.sectorLabel} title={p.title} summary={p.summary} result={p.result} nodes={3 + (i % 2)} />
         ))}
       </div>
-      <div className="mt-10 flex justify-center">
+      <div className="mt-12">
         <Button href="/proyectos" variant="secondary">
           {tc("verMasProyectos")}
         </Button>

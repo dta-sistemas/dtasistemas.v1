@@ -23,7 +23,7 @@ export function SolutionCard({ number, icon: Icon, title, description, bullets, 
   const tc = useTranslations("common");
 
   return (
-    <article className="group relative flex h-full flex-col rounded-card border border-dta-gray-200 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-dta-blue-600/40 hover:shadow-card-hover">
+    <article className="group relative flex h-full flex-col rounded-card border border-dta-gray-200 bg-white p-6 shadow-card transition-all duration-300 hover:border-dta-blue-600/40 hover:shadow-card-hover">
       <div className="flex items-start justify-between">
         <div
           className="grid h-12 w-12 place-items-center rounded-xl bg-dta-blue-100 text-dta-blue-600 transition-colors duration-300 group-hover:bg-dta-blue-600 group-hover:text-white"

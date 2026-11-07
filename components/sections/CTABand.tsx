@@ -9,27 +9,15 @@ type CTABandProps = {
   label: ReactNode;
 };
 
-/**
- * Franja oscura de cierre de las páginas de detalle. Reemplaza 5 copias del
- * mismo bloque que además sobrescribían los colores del botón con clases
- * sueltas; ahora usa la variante "light" del sistema de botones.
- */
+/** Cierre de las páginas de detalle: titular, una acción. Claro, para no apilar azul marino con el footer. */
 export function CTABand({ title, text, href, label }: CTABandProps) {
   return (
-    <Section tone="dark" className="relative isolate overflow-hidden">
-      <div
-        aria-hidden="true"
-        className="bg-grid-navy absolute inset-0 -z-10 opacity-60 [mask-image:radial-gradient(ellipse_at_center,black_10%,transparent_70%)]"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute left-1/2 top-0 -z-10 h-56 w-[32rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-dta-blue-600/35 blur-[100px]"
-      />
-      <div className="mx-auto max-w-xl text-center">
-        <h2 className="text-h2 text-white">{title}</h2>
-        {text && <p className="mt-3 text-body-lg text-white/70">{text}</p>}
-        <div className="mt-7 flex justify-center">
-          <Button href={href} variant="light">
+    <Section tone="light">
+      <div className="max-w-2xl border-t border-dta-black pt-10">
+        <h2 className="text-h2 text-dta-black">{title}</h2>
+        {text && <p className="mt-3 max-w-xl text-body-lg text-dta-gray-600">{text}</p>}
+        <div className="mt-7">
+          <Button href={href} variant="primary">
             {label}
           </Button>
         </div>

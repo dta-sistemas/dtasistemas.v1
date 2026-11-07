@@ -75,7 +75,7 @@ export async function SectorDetail({ sector, locale }: { sector: Sector; locale:
         <div className="grid gap-4 sm:grid-cols-2">
           {sector.problems.map((p, i) => (
             <Reveal key={p} delay={(i % 2) * 80} className="h-full">
-              <div className="flex h-full items-start gap-3 rounded-card border border-dta-gray-200 bg-dta-gray-50 p-5 text-[15px] leading-relaxed text-dta-black/85">
+              <div className="flex h-full items-start gap-3 border-t border-dta-gray-300 pt-4 text-[15px] leading-relaxed text-dta-black/85">
                 <CheckCircle2 size={17} className="mt-0.5 shrink-0 text-dta-blue-600" aria-hidden="true" /> {p}
               </div>
             </Reveal>
@@ -94,12 +94,9 @@ export async function SectorDetail({ sector, locale }: { sector: Sector; locale:
               <Reveal key={s.slug} delay={i * 80} className="h-full">
                 <Link
                   href={s.href}
-                  className="group flex h-full flex-col rounded-card border border-dta-gray-200 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-dta-blue-600/40 hover:shadow-card-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-dta-blue-600"
+                  className="group flex h-full flex-col border-t border-dta-black pt-5 transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-dta-blue-600"
                 >
-                  <div className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-dta-blue-100 text-dta-blue-600 transition-colors duration-300 group-hover:bg-dta-blue-600 group-hover:text-white">
-                    <Icon size={20} aria-hidden="true" />
-                  </div>
-                  <div className="font-bold text-dta-black">{s.title}</div>
+                  <div className="font-serif text-xl text-dta-black transition-colors group-hover:text-dta-blue-600">{s.title}</div>
                   <p className="mt-1.5 flex-1 text-sm leading-relaxed text-dta-gray-600">{s.angle}</p>
                   <ArrowRight size={16} className="mt-4 text-dta-blue-600 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
                 </Link>

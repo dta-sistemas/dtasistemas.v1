@@ -41,7 +41,7 @@
 
   body {
     @apply bg-dta-gray-50 text-dta-black antialiased;
-    font-family: var(--font-inter), system-ui, sans-serif;
+    font-family: var(--font-hanken), system-ui, sans-serif;
     text-rendering: optimizeLegibility;
   }
 
@@ -51,6 +51,18 @@
   h3 {
     text-wrap: balance;
   }
+  /* Titulares en serif editorial (Newsreader); h3, texto e interfaz en Hanken Grotesk. */
+  h1,
+  h2 {
+    font-family: var(--font-newsreader), Georgia, serif;
+  }
+  /* Cifras tabulares: alinean precios, fechas y cantidades. */
+  body {
+    font-variant-numeric: lining-nums;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums lining-nums;
+  }
   p {
     text-wrap: pretty;
   }
@@ -58,6 +70,17 @@
   ::selection {
     background: var(--dta-blue-600);
     color: #fff;
+  }
+  /* Detalles del navegador temados con la paleta: cursor de texto, barra de scroll y subrayado. */
+  input,
+  textarea {
+    caret-color: var(--dta-blue-600);
+  }
+  html {
+    scrollbar-color: var(--dta-gray-300) transparent;
+  }
+  a {
+    text-underline-offset: 4px;
   }
 
   /* Foco visible obligatorio (accesibilidad, sección 25 del brief) */
@@ -91,19 +114,4 @@
     max-width: var(--dta-container-max);
   }
 
-  /* Cuadrícula técnica sutil para fondos claros (PageHero de páginas internas). */
-  .bg-grid-light {
-    background-image:
-      linear-gradient(to right, rgb(11 23 48 / 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(11 23 48 / 0.05) 1px, transparent 1px);
-    background-size: 48px 48px;
-  }
-
-  /* Cuadrícula técnica sutil para fondos navy (Hero). */
-  .bg-grid-navy {
-    background-image:
-      linear-gradient(to right, rgb(255 255 255 / 0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
-    background-size: 48px 48px;
-  }
 }

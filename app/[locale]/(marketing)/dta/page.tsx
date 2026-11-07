@@ -49,7 +49,7 @@ export default async function DTAPage({ params }: Props) {
         eyebrow={t("eyebrow")}
         title={
           <>
-            {t("title1")} <span className="text-dta-blue-600">{t("title2")}</span>
+            {t("title1")} {t("title2")}
           </>
         }
         description={t("intro")}
@@ -86,7 +86,7 @@ export default async function DTAPage({ params }: Props) {
               ))}
             </ul>
           </div>
-          <div className="rounded-card border border-dta-gray-200 border-l-4 border-l-dta-blue-600 bg-white p-6 shadow-card">
+          <div className="rounded-card border border-dta-gray-200 bg-white p-6">
             <div className="mb-2 text-lg font-bold text-dta-black">{t("missionTitle")}</div>
             <p className="leading-relaxed text-dta-gray-600">{t("missionText")}</p>
           </div>

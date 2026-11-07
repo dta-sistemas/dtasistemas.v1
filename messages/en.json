@@ -12,7 +12,8 @@
     "menuClose": "Close menu",
     "primaryLabel": "Main navigation",
     "skipToContent": "Skip to content",
-    "breadcrumbLabel": "Breadcrumb"
+    "breadcrumbLabel": "Breadcrumb",
+    "diagnostico": "Request an assessment"
   },
   "footer": {
     "tagline": "Technology to understand, automate and grow your business.",
@@ -36,7 +37,9 @@
     "desde": "From",
     "verProyecto": "View project",
     "verSoluciones": "View solutions",
-    "leerMas": "Read more"
+    "leerMas": "Read more",
+    "whatsapp": "Message on WhatsApp",
+    "verSector": "View sector"
   },
   "home": {
     "heroTitle1": "Your business already has technology.",
@@ -54,7 +57,7 @@
     "sectorsEyebrow": "Industries we work with",
     "sectorsTitle": "We speak your industry's language",
     "projectsEyebrow": "Solutions in action",
-    "projectsTitle": "Real cases, concrete results",
+    "projectsTitle": "How we solve it",
     "auditEyebrow": "DTA Digital Audit",
     "auditTitle": "Discover where your business is losing time.",
     "auditText": "We analyze your processes, tools and data and build a tech roadmap for your business.",
@@ -69,7 +72,46 @@
     "diagramCrm": "CRM",
     "diagramData": "Data",
     "diagramAI": "AI & automation",
-    "diagramCenter": "SYSTEM"
+    "diagramCenter": "SYSTEM",
+    "ledger": {
+      "title": "Booking, suite 4, December 12 to 15",
+      "todayLabel": "Today",
+      "withLabel": "With DTA",
+      "todayNote": "Four tools, three versions. Someone reconciles them by hand, every day.",
+      "withNote": "One version, updated on its own across all four tools.",
+      "example": "Illustrative example",
+      "chipOff": "not connected",
+      "chipOn": "connected",
+      "windowTitle": "dta · sync",
+      "windowStatus": "4 sources",
+      "logTitle": "Log",
+      "logToday": [
+        "09:14  Booking.com returns 2 nights, the system says 3",
+        "09:15  WhatsApp: open question, no structured data"
+      ],
+      "logSynced": [
+        "09:16  Connectors active: 4 of 4",
+        "09:16  Conflict resolved: 3 nights",
+        "09:16  One version, updated on its own"
+      ],
+      "resultLabel": "Single version",
+      "nights": "3 nights",
+      "sources": [
+        { "name": "Operations spreadsheet", "today": "3 nights" },
+        { "name": "Booking.com", "today": "2 nights" },
+        { "name": "Front-desk WhatsApp", "today": "Is it still the 3-night one?" },
+        { "name": "Front-desk system", "today": "3 nights" }
+      ]
+    },
+    "projectsText": "Illustrative cases of how we connect systems in companies like yours.",
+    "caseBadge": "Illustrative case",
+    "caseBefore": "Before",
+    "caseAfter": "After",
+    "caseResult": "Result",
+    "sectorsText": "Every sector has its own disconnected tools. These are the ones we connect most.",
+    "stackTitle": "We build with proven technology",
+    "stackText": "We choose tools to fit your company's problem, not the other way around. This is the foundation we work with.",
+    "stackLabel": "Stack"
   },
   "processSteps": {
     "entender": { "title": "Understand", "description": "We analyze your business processes, tools and data." },
@@ -260,6 +302,7 @@
     "form": {
       "fullName": "Full name",
       "fullNamePlaceholder": "E.g. John Smith",
+      "moreDetails": "More details (optional)",
       "company": "Company",
       "companyPlaceholder": "E.g. Your company name",
       "email": "Email",

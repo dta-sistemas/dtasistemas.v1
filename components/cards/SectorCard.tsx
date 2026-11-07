@@ -25,7 +25,7 @@ export function SectorCard({ name, tags, image, icon: Icon, href, isOther = fals
     return (
       <Link
         href={href}
-        className="group relative flex aspect-[4/5] h-full flex-col items-center justify-center gap-2 overflow-hidden rounded-card border-2 border-dashed border-dta-gray-300 bg-white/60 p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-dta-blue-600 hover:bg-white hover:shadow-card-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-dta-blue-600"
+        className="group relative flex aspect-[4/5] h-full flex-col items-center justify-center gap-2 overflow-hidden rounded-card border-2 border-dashed border-dta-gray-300 bg-white/60 p-5 text-center transition-all duration-300 hover:border-dta-blue-600 hover:bg-white hover:shadow-card-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-dta-blue-600"
       >
         {Icon && (
           <Icon
@@ -43,7 +43,7 @@ export function SectorCard({ name, tags, image, icon: Icon, href, isOther = fals
   return (
     <Link
       href={href}
-      className="group relative block aspect-[4/5] h-full overflow-hidden rounded-card bg-dta-navy-900 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dta-blue-600"
+      className="group relative block aspect-[4/5] h-full overflow-hidden rounded-card bg-dta-navy-900 shadow-card transition-all duration-300 hover:shadow-card-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dta-blue-600"
     >
       {image && (
         <Image
@@ -51,7 +51,7 @@ export function SectorCard({ name, tags, image, icon: Icon, href, isOther = fals
           alt={name}
           fill
           sizes="(min-width: 768px) 20vw, 50vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover transition-transform duration-500"
         />
       )}
       <div
@@ -60,7 +60,7 @@ export function SectorCard({ name, tags, image, icon: Icon, href, isOther = fals
       />
       <ArrowUpRight
         size={18}
-        className="absolute right-4 top-4 text-white opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100"
+        className="absolute right-4 top-4 text-white opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100"
         aria-hidden="true"
       />
       <div className="relative flex h-full flex-col justify-end p-5 text-white">

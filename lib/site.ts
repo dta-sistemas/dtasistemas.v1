@@ -42,3 +42,10 @@ export const LEGAL = {
   /** Fecha de la versión vigente (AAAA-MM-DD). Actualizar con cada cambio. */
   lastUpdated: "2026-10-23",
 } as const;
+
+/**
+ * WhatsApp de contacto, solo dígitos con lada de país (ej. "5219981234567").
+ * Mientras esté vacío, el botón de WhatsApp NO se muestra en ninguna parte.
+ * TODO: completar con el número real de DTA.
+ */
+export const WHATSAPP_NUMBER: string | undefined = undefined;

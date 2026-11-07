@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import Image from "next/image";
 import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
-import { PageHero } from "@/components/sections/PageHero";
+import { PageHero, HeroPanel } from "@/components/sections/PageHero";
+import { CaseSchematic } from "@/components/sections/CaseSchematic";
 import { CTABand } from "@/components/sections/CTABand";
 import { Button } from "@/components/ui/Button";
 import { Link } from "@/i18n/navigation";
@@ -39,6 +39,7 @@ export default async function ProyectoDetallePage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: "proyectoDetail" });
   const tHub = await getTranslations({ locale, namespace: "proyectosHub" });
   const tc = await getTranslations({ locale, namespace: "common" });
+  const tHome = await getTranslations({ locale, namespace: "home" });
 
   return (
     <div>
@@ -62,10 +63,16 @@ export default async function ProyectoDetallePage({ params }: Props) {
         title={project.title}
         description={project.summary}
         aside={
-          <div className="relative aspect-video overflow-hidden rounded-card bg-dta-navy-900 shadow-card-hover">
-            <Image src={project.image} alt={project.title} fill sizes="(min-width: 768px) 45vw, 100vw" priority className="object-cover" />
-            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-dta-navy-950/50 to-transparent" />
-          </div>
+          <HeroPanel title={`dta · ${project.sectorLabel.toLowerCase()}`}>
+            <CaseSchematic dark nodes={4} before={tHome("caseBefore")} after={tHome("caseAfter")} />
+            <ul className="mt-5 flex flex-wrap gap-1.5 border-t border-white/10 pt-5">
+              {project.technology.map((techName) => (
+                <li key={techName} className="rounded border border-white/20 px-2 py-1 font-mono text-xs text-white/80">
+                  {techName}
+                </li>
+              ))}
+            </ul>
+          </HeroPanel>
         }
       />
 
@@ -76,7 +83,7 @@ export default async function ProyectoDetallePage({ params }: Props) {
             { title: t("solutionTitle"), text: project.solution },
           ].map((b, i) => (
             <Reveal key={b.title} delay={i * 90} className="h-full">
-              <div className="h-full rounded-card border border-dta-gray-200 bg-white p-6 shadow-card md:p-7">
+              <div className="h-full border-t border-dta-black pt-5">
                 <div className="mb-3 flex items-center gap-2 text-label uppercase text-dta-blue-600">
                   <span className="grid h-6 w-6 place-items-center rounded-full bg-dta-blue-100 text-[11px] font-bold">{i + 1}</span>
                   {b.title}
@@ -98,7 +105,7 @@ export default async function ProyectoDetallePage({ params }: Props) {
               ))}
             </div>
           </div>
-          <div className="rounded-card border border-dta-blue-100 border-l-4 border-l-dta-blue-600 bg-dta-blue-50 p-6 md:p-7">
+          <div className="rounded-card border border-dta-blue-100 bg-dta-blue-50 p-6 md:p-7">
             <div className="mb-3 text-label uppercase text-dta-blue-600">{t("resultTitle")}</div>
             <p className="text-lg font-semibold leading-snug text-dta-black">{project.result}</p>
           </div>

@@ -5,6 +5,7 @@ import { ValueProposition } from "@/components/sections/ValueProposition";
 import { Pillars } from "@/components/sections/Pillars";
 import { ProblemsSection } from "@/components/sections/ProblemsSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
+import { StackSection } from "@/components/sections/StackSection";
 import { Differentiation } from "@/components/sections/Differentiation";
 import { SectorsSection } from "@/components/sections/SectorsSection";
 import { ProjectsInAction } from "@/components/sections/ProjectsInAction";
@@ -40,6 +41,7 @@ export default async function HomePage({ params }: Props) {
       <ProblemsSection />
       <ProcessSection title={t("processTitle")} />
       <Differentiation />
+      <StackSection />
       <SectorsSection />
       <ProjectsInAction />
       <DigitalAudit />

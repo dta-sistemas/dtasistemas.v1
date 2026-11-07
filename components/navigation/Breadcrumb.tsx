@@ -16,17 +16,18 @@ export type BreadcrumbItem = {
  * semántica <ol>, y los eslabones largos (títulos de artículo) se truncan en
  * una sola línea en lugar de romper el layout en móvil.
  */
-export function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
+export function Breadcrumb({ items, tone = "light" }: { items: BreadcrumbItem[]; tone?: "light" | "dark" }) {
+  const dark = tone === "dark";
   const t = useTranslations("nav");
 
   return (
-    <nav aria-label={t("breadcrumbLabel")} className="mb-5 text-xs text-dta-gray-600">
+    <nav aria-label={t("breadcrumbLabel")} className={`mb-6 text-xs ${dark ? "text-white/60" : "text-dta-gray-600"}`}>
       <ol className="flex flex-wrap items-center gap-x-1.5 gap-y-1">
         <li className="flex items-center">
           <Link
             href="/"
             aria-label={t("inicio")}
-            className="flex items-center rounded p-0.5 transition-colors hover:text-dta-blue-600"
+            className={`flex items-center rounded p-0.5 transition-colors ${dark ? "hover:text-white" : "hover:text-dta-blue-600"}`}
           >
             <Home size={13} aria-hidden="true" />
           </Link>
@@ -35,13 +36,13 @@ export function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
           const isLast = i === items.length - 1;
           return (
             <li key={item.label} className="flex min-w-0 items-center gap-1.5">
-              <ChevronRight size={11} className="shrink-0 text-dta-gray-400" aria-hidden="true" />
+              <ChevronRight size={11} className={`shrink-0 ${dark ? "text-white/30" : "text-dta-gray-400"}`} aria-hidden="true" />
               {item.href && !isLast ? (
-                <Link href={item.href} className="transition-colors hover:text-dta-blue-600">
+                <Link href={item.href} className={`transition-colors ${dark ? "hover:text-white" : "hover:text-dta-blue-600"}`}>
                   {item.label}
                 </Link>
               ) : (
-                <span aria-current="page" className="max-w-[16rem] truncate font-medium text-dta-black sm:max-w-md">
+                <span aria-current="page" className={`max-w-[16rem] truncate font-medium sm:max-w-md ${dark ? "text-white" : "text-dta-black"}`}>
                   {item.label}
                 </span>
               )}

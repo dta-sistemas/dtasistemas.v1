@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { Suspense } from "react";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
@@ -11,7 +11,34 @@ import { PageViewTracker } from "@/components/analytics/PageViewTracker";
 import { SITE_URL } from "@/lib/site";
 import "@/styles/globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+/**
+ * Tipografía autoalojada (OFL): sin depender de Google Fonts en build ni en runtime.
+ *  - Newsreader: serif editorial para titulares (h1/h2). Aporta el carácter de marca.
+ *  - Hanken Grotesk: sans neutra y legible para texto, interfaz y h3.
+ * Ambas son variables (un solo archivo cubre todos los pesos).
+ */
+const newsreader = localFont({
+  src: "../fonts/Newsreader-latin-wght.woff2",
+  variable: "--font-newsreader",
+  weight: "200 800",
+  display: "swap",
+  fallback: ["Georgia", "Times New Roman", "serif"],
+});
+/** Monoespaciada solo para detalles técnicos (estados, registros, stack): refuerza que DTA es un proveedor de tecnología. */
+const jetbrains = localFont({
+  src: "../fonts/JetBrainsMono-latin-wght.woff2",
+  variable: "--font-mono",
+  weight: "100 800",
+  display: "swap",
+  fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
+});
+const hanken = localFont({
+  src: "../fonts/HankenGrotesk-latin-wght.woff2",
+  variable: "--font-hanken",
+  weight: "100 900",
+  display: "swap",
+  fallback: ["system-ui", "sans-serif"],
+});
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -67,7 +94,7 @@ export default async function RootLayout({ children, params }: Props) {
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={inter.variable}>
+    <html lang={locale} className={`${newsreader.variable} ${hanken.variable} ${jetbrains.variable}`}>
       <head>
         <GoogleTagManagerScript />
       </head>

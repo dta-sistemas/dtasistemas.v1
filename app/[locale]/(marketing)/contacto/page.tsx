@@ -5,6 +5,7 @@ import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { PageHero, HeroPanel } from "@/components/sections/PageHero";
 import { ContactForm } from "@/components/forms/ContactForm";
+import { WHATSAPP_NUMBER } from "@/lib/site";
 import { ContactChannelRow } from "@/components/forms/ContactChannelRow";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildLocalBusinessSchema, buildBreadcrumbSchema } from "@/lib/seo/schema";
@@ -37,8 +38,12 @@ export default async function ContactoPage({ params, searchParams }: Props) {
   const defaultHelpType = intent ? INTENT_TO_HELP_TYPE[intent] : undefined;
   const t = await getTranslations({ locale, namespace: "contactoPage" });
 
+  // Antes aparecía un WhatsApp de relleno (+52 000 000 0000) con enlace real a wa.me/52000000000.
+  // Ahora el canal solo se muestra cuando hay un número configurado en lib/site.ts.
   const channels = [
-    { iconKey: "phone" as const, label: t("channelPhone"), value: "+52 000 000 0000", href: "https://wa.me/52000000000", trackEvent: "whatsapp" as const },
+    ...(WHATSAPP_NUMBER
+      ? [{ iconKey: "phone" as const, label: t("channelPhone"), value: `+${WHATSAPP_NUMBER}`, href: `https://wa.me/${WHATSAPP_NUMBER}`, trackEvent: "whatsapp" as const }]
+      : []),
     { iconKey: "mail" as const, label: t("channelEmail"), value: "contacto@dtasistemas.com", href: "mailto:contacto@dtasistemas.com", trackEvent: "email" as const },
     { iconKey: "mapPin" as const, label: t("channelOffice"), value: "Cancún, Quintana Roo, México" },
     { iconKey: "clock" as const, label: t("channelSchedule"), value: t("scheduleValue") },
@@ -53,7 +58,7 @@ export default async function ContactoPage({ params, searchParams }: Props) {
         eyebrow={t("eyebrow")}
         title={
           <>
-            {t("title1")} <span className="text-dta-blue-600">{t("title2")}</span> {t("title3")}
+            {t("title1")} {t("title2")} {t("title3")}
           </>
         }
         description={t("intro")}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Section } from "@/components/ui/Section";
-import { SectorCard } from "@/components/cards/SectorCard";
+import { SectorRows } from "@/components/sections/SectorRows";
 import { Link } from "@/i18n/navigation";
 import { getLocalizedSectors, getLocalizedOtherSectorsCard } from "@/lib/i18n/localizedContent";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -34,24 +34,20 @@ export default async function SectoresPage({ params }: Props) {
         eyebrow={t("eyebrow")}
         title={
           <>
-            {t("title1")} <span className="text-dta-blue-600">{t("title2")}</span>
+            {t("title1")} {t("title2")}
           </>
         }
         description={t("intro")}
       />
 
       <Section tone="light">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5">
-          {sectors.map((s) => (
-            <SectorCard key={s.slug} name={s.name} tags={s.tags} image={s.image} icon={s.icon} href={s.href} />
-          ))}
-        </div>
+        <SectorRows rows={sectors} />
 
-        <div className="mt-8 rounded-card border-2 border-dashed border-dta-gray-300 bg-dta-gray-50 p-8 text-center">
-          <div className="font-bold text-dta-black text-sm">{t("otherTitle")}</div>
-          <p className="text-sm text-dta-gray-600 mt-1">
+        <div className="mt-10 max-w-2xl border-t border-dta-black pt-6">
+          <div className="font-serif text-2xl text-dta-black">{t("otherTitle")}</div>
+          <p className="mt-2 text-dta-gray-700">
             {t("otherText")}{" "}
-            <Link href={otherCard.href} className="text-dta-blue-600 font-semibold hover:underline">
+            <Link href={otherCard.href} className="font-semibold text-dta-blue-600 underline underline-offset-4">
               {t("otherLink")}
             </Link>
             .

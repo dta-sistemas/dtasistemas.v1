@@ -108,8 +108,8 @@ export function Navbar() {
 
         <div className="hidden items-center gap-3 md:flex">
           <LanguageSwitcher tone="light" />
-          <Button href="/contacto" variant="primary" className="!py-2.5">
-            {t("hablemos")}
+          <Button href="/contacto?intent=audit" variant="primary" className="!py-2.5">
+            {t("diagnostico")}
           </Button>
         </div>
 
@@ -163,8 +163,8 @@ export function Navbar() {
               })}
             </ul>
             <div className="pb-3 pt-4">
-              <Button href="/contacto" variant="primary" className="w-full">
-                {t("hablemos")}
+              <Button href="/contacto?intent=audit" variant="primary" className="w-full">
+                {t("diagnostico")}
               </Button>
             </div>
           </nav>

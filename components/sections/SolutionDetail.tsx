@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { PageHero, HeroPanel } from "./PageHero";
 import { CTABand } from "./CTABand";
 import { Reveal } from "../ui/Reveal";
+import { SolutionVisual } from "./SolutionVisual";
 import { JsonLd } from "../seo/JsonLd";
 import { ViewTracker } from "../analytics/ViewTracker";
 import { buildServiceSchema, buildBreadcrumbSchema } from "@/lib/seo/schema";
@@ -54,10 +55,8 @@ export async function SolutionDetail({ solution, locale }: { solution: Solution;
         }
         aside={
           <HeroPanel>
-            <span className="grid h-12 w-12 place-items-center rounded-xl bg-white/10 text-dta-blue-300">
-              <solution.icon size={22} aria-hidden="true" />
-            </span>
-            <div className="mt-5 text-xl font-bold">{solution.title}</div>
+            <SolutionVisual slug={solution.slug} className="rounded-md" />
+            <div className="mt-5 font-serif text-2xl">{solution.title}</div>
             <ul className="mt-5 space-y-3 border-t border-white/10 pt-5">
               {solution.bullets.map((b) => (
                 <li key={b} className="flex items-start gap-2.5 text-sm text-white/80">
@@ -76,7 +75,7 @@ export async function SolutionDetail({ solution, locale }: { solution: Solution;
             { title: t("deliverablesTitle"), items: solution.deliverables },
           ].map((block, i) => (
             <Reveal key={block.title} delay={i * 90} className="h-full">
-              <div className="h-full rounded-card border border-dta-gray-200 bg-white p-6 shadow-card md:p-8">
+              <div className="h-full border-t border-dta-black pt-6">
                 <h2 className="mb-5 text-h3 text-dta-black">{block.title}</h2>
                 <ul className="space-y-3.5">
                   {block.items.map((item) => (
@@ -95,7 +94,7 @@ export async function SolutionDetail({ solution, locale }: { solution: Solution;
             <h2 className="mb-4 text-h3 text-dta-black">{t("technologiesTitle")}</h2>
             <div className="flex flex-wrap gap-2">
               {solution.technologies.map((techName) => (
-                <span key={techName} className="rounded-full border border-dta-gray-200 bg-dta-gray-50 px-3.5 py-1.5 text-sm text-dta-gray-700">
+                <span key={techName} className="rounded-md border border-dta-gray-300 bg-white px-3 py-1.5 font-mono text-sm text-dta-black">
                   {techName}
                 </span>
               ))}
@@ -112,7 +111,7 @@ export async function SolutionDetail({ solution, locale }: { solution: Solution;
               <Link
                 key={s.slug}
                 href={s.href}
-                className="inline-flex items-center gap-2 rounded-full border border-dta-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-dta-black shadow-card transition-all hover:-translate-y-0.5 hover:border-dta-blue-600 hover:text-dta-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-dta-blue-600"
+                className="inline-flex items-center gap-2 rounded-full border border-dta-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-dta-black shadow-card transition-all hover:border-dta-blue-600 hover:text-dta-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-dta-blue-600"
               >
                 <s.icon size={15} className="text-dta-blue-600" aria-hidden="true" />
                 {s.name}

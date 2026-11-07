@@ -36,7 +36,7 @@ export default async function SolucionesPage({ params }: Props) {
         eyebrow={t("eyebrow")}
         title={
           <>
-            {t("title1")} <span className="text-dta-blue-600">{t("title2")}</span>
+            {t("title1")} {t("title2")}
           </>
         }
         description={t("intro")}
