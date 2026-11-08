@@ -46,6 +46,7 @@ export function SolutionsGrid({ activeTab }: { activeTab: string }) {
         <SolutionTile
           key={s.key}
           slug={s.key}
+          index={s.number}
           title={s.title}
           description={s.description}
           bullets={s.bullets}

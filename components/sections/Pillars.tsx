@@ -19,7 +19,7 @@ export function Pillars() {
       <div className="mt-12 grid gap-5 md:grid-cols-12">
         {solutions.map((s, i) => (
           <div key={s.slug} className={SPANS[i] ?? "md:col-span-4"}>
-            <SolutionTile slug={s.slug} title={s.title} description={s.description} bullets={s.bullets} href={s.href} />
+            <SolutionTile slug={s.slug} index={s.pillarNumber} wide={i < 2} title={s.title} description={s.description} bullets={s.bullets} href={s.href} />
           </div>
         ))}
       </div>

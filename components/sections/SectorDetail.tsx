@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { PageHero, HeroPanel } from "./PageHero";
 import { CTABand } from "./CTABand";
 import { Reveal } from "../ui/Reveal";
+import { SectorVisual } from "./SectorVisual";
 import { JsonLd } from "../seo/JsonLd";
 import { ViewTracker } from "../analytics/ViewTracker";
 import { buildServiceSchema, buildBreadcrumbSchema } from "@/lib/seo/schema";
@@ -53,13 +54,11 @@ export async function SectorDetail({ sector, locale }: { sector: Sector; locale:
         }
         aside={
           <HeroPanel>
-            <span className="grid h-12 w-12 place-items-center rounded-xl bg-white/10 text-dta-blue-300">
-              <sector.icon size={22} aria-hidden="true" />
-            </span>
-            <div className="mt-5 text-xl font-bold uppercase tracking-wide">{sector.name}</div>
-            <div className="mt-5 flex flex-wrap gap-2 border-t border-white/10 pt-5">
+            <SectorVisual slug={sector.slug} className="rounded-md" />
+            <div className="mt-5 font-serif text-2xl">{sector.name}</div>
+            <div className="mt-4 flex flex-wrap gap-1.5 border-t border-white/10 pt-4">
               {sector.tags.map((tag) => (
-                <span key={tag} className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-sm text-white/80">
+                <span key={tag} className="rounded border border-white/20 px-2 py-1 font-mono text-xs text-white/80">
                   {tag}
                 </span>
               ))}

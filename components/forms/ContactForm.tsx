@@ -102,7 +102,7 @@ export function ContactForm({ source, defaultHelpType }: ContactFormProps) {
     <form onSubmit={handleSubmit(onSubmit)} onFocus={handleFirstFocus} className="space-y-5" noValidate>
       <div className="grid sm:grid-cols-2 gap-4">
         <TextField label={t("fullName")} required placeholder={t("fullNamePlaceholder")} error={errors.fullName?.message} {...register("fullName")} />
-        <TextField label={t("company")} required placeholder={t("companyPlaceholder")} error={errors.company?.message} {...register("company")} />
+        <TextField label={t("phone")} type="tel" inputMode="tel" autoComplete="tel" required placeholder="+52 000 000 0000" error={errors.phone?.message} {...register("phone")} />
       </div>
 
       <TextField label={t("email")} type="email" required placeholder={t("emailPlaceholder")} error={errors.email?.message} {...register("email")} />
@@ -118,15 +118,15 @@ export function ContactForm({ source, defaultHelpType }: ContactFormProps) {
 
       <TextareaField label={t("message")} required rows={4} placeholder={t("messagePlaceholder")} error={errors.message?.message} {...register("message")} />
 
-      {/* Teléfono y ciudad son opcionales: plegados para que el formulario se perciba corto.
+      {/* Empresa y ciudad son opcionales: plegados para que el formulario se perciba corto.
           Se abren solos si alguno tiene un error de validación. */}
-      <details open={Boolean(errors.phone || errors.city) || undefined} className="group rounded-input border border-dta-gray-200">
+      <details open={Boolean(errors.company || errors.city) || undefined} className="group rounded-input border border-dta-gray-200">
         <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-sm font-semibold text-dta-black marker:hidden">
           {t("moreDetails")}
           <span aria-hidden="true" className="text-dta-gray-600 transition-transform duration-150 group-open:rotate-45">+</span>
         </summary>
         <div className="grid gap-4 border-t border-dta-gray-200 p-4 sm:grid-cols-2">
-          <TextField label={t("phone")} type="tel" placeholder="+52 000 000 0000" error={errors.phone?.message} {...register("phone")} />
+          <TextField label={t("company")} placeholder={t("companyPlaceholder")} error={errors.company?.message} {...register("company")} />
           <TextField label={t("city")} placeholder={t("cityPlaceholder")} error={errors.city?.message} {...register("city")} />
         </div>
       </details>

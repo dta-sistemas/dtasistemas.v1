@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { getContactFormSchema, type ContactFormValues } from "@/lib/validation/contactSchema";
 import { verifyTurnstileToken } from "./verifyTurnstile";
 import { sendLeadEmail, sendLeadConfirmation } from "./sendLeadEmail";
+import { generateFolio } from "./folio";
 import { syncLeadToCrm } from "./syncToCrm";
 import { checkRateLimit } from "@/lib/security/rateLimit";
 import type { AppLocale } from "@/i18n/routing";
@@ -58,7 +59,10 @@ export async function submitLead(values: ContactFormValues & { locale: AppLocale
     return { success: false, error: TURNSTILE_ERROR[locale] };
   }
 
-  const [crm, email] = await Promise.allSettled([syncLeadToCrm(lead), sendLeadEmail(lead, locale)]);
+  // Un folio por registro: el mismo número aparece en el correo del equipo y en el del cliente.
+  const folio = generateFolio();
+
+  const [crm, email] = await Promise.allSettled([syncLeadToCrm(lead), sendLeadEmail(lead, locale, folio)]);
 
   // El CRM es secundario (hoy es un stub): si falla se registra pero no frena al visitante.
   if (crm.status === "rejected") {
@@ -79,7 +83,7 @@ export async function submitLead(values: ContactFormValues & { locale: AppLocale
   // si falla (su mensaje sí llegó). Se espera con await porque en serverless una promesa
   // suelta puede cortarse al terminar la respuesta.
   try {
-    await sendLeadConfirmation(lead, locale);
+    await sendLeadConfirmation(lead, locale, folio);
   } catch (error) {
     console.error("[leads] Falló sendLeadConfirmation (el lead sí fue notificado al equipo):", error);
   }

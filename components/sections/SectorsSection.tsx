@@ -1,7 +1,7 @@
 import { useTranslations, useLocale } from "next-intl";
 import { Section } from "../ui/Section";
 import { SectionHeading } from "../ui/SectionHeading";
-import { SectorRows } from "./SectorRows";
+import { SectorGrid } from "./SectorGrid";
 import { getLocalizedSectors, getLocalizedOtherSectorsCard } from "@/lib/i18n/localizedContent";
 import type { AppLocale } from "@/i18n/routing";
 
@@ -15,7 +15,7 @@ export function SectorsSection() {
     <Section tone="subtle">
       <SectionHeading title={t("sectorsTitle")} subtitle={t("sectorsText")} />
       <div className="mt-12">
-        <SectorRows rows={rows} />
+        <SectorGrid rows={rows} />
       </div>
     </Section>
   );

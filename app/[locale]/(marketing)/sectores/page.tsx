@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Section } from "@/components/ui/Section";
-import { SectorRows } from "@/components/sections/SectorRows";
+import { SectorGrid } from "@/components/sections/SectorGrid";
 import { Link } from "@/i18n/navigation";
 import { getLocalizedSectors, getLocalizedOtherSectorsCard } from "@/lib/i18n/localizedContent";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -41,7 +41,7 @@ export default async function SectoresPage({ params }: Props) {
       />
 
       <Section tone="light">
-        <SectorRows rows={sectors} />
+        <SectorGrid rows={sectors} />
 
         <div className="mt-10 max-w-2xl border-t border-dta-black pt-6">
           <div className="font-serif text-2xl text-dta-black">{t("otherTitle")}</div>
