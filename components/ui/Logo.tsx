@@ -18,11 +18,11 @@ export function Logo({
   // ==========================================
 
   // NAVBAR
-  const navbarWidthMobile = 150;
+  const navbarWidthMobile = 180;
   const navbarWidthDesktop = 270;
 
   // FOOTER
-  const footerWidthMobile = 200;
+  const footerWidthMobile = 230;
   const footerWidthDesktop = 350;
 
   // ==========================================
