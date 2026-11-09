@@ -58,8 +58,8 @@ export function LinktreeView() {
     <Image
       src="/images/logos/DTA-A-RS.png"
       alt="DTA Sistemas"
-      width={200}
-      height={200}
+      width={160}
+      height={160}
       className="w-full h-full object-cover"
     />
   </div>
