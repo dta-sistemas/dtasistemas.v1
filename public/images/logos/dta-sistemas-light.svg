@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="540" viewBox="0 0 1600 540" role="img" aria-labelledby="title desc">
+<title id="title">DTA Sistemas</title><desc id="desc">Logo horizontal DTA Sistemas negro con acento azul sobre fondo blanco</desc>
+<rect width="1600" height="540" fill="#ffffff"/>
+<g fill="#101419">
+<!-- D estilizada -->
+<path d="M95 162H285C371 162 419 208 419 270S371 378 285 378H95V294H144V335H281C334 335 369 310 369 270S334 205 281 205H95Z"/>
+<!-- T -->
+<path d="M408 162H680L644 205H568V378H517V205H445Z"/>
+<!-- A -->
+<path d="M690 378L816 162H864L990 378H927L840 224L753 378Z"/>
+</g>
+<path d="M839 281L891 378H787Z" fill="#1266E8"/>
+<rect x="1021" y="175" width="6" height="193" fill="#1266E8"/>
+<text x="1053" y="278" font-family="Arial,Helvetica,sans-serif" font-size="74" font-weight="700" letter-spacing="2" fill="#101419" textLength="450" lengthAdjust="spacingAndGlyphs">SISTEMAS</text>
+<text x="1054" y="325" font-family="Arial,Helvetica,sans-serif" font-size="20" letter-spacing="2.5" fill="#555e67" textLength="445" lengthAdjust="spacingAndGlyphs">DESARROLLO • SOFTWARE • SOLUCIONES DIGITALES</text>
+</svg>

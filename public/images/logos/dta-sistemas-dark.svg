@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+<title id="title">DTA Sistemas</title><desc id="desc">Logotipo blanco y cian sobre fondo transparente para pie de página oscuro</desc>
+<g fill="#FFFFFF">
+<!-- D geometric -->
+<path d="M35 63 H180 C246 63 280 103 280 150 S246 237 180 237 H35 V190 H180 C213 190 232 176 232 150 S213 110 180 110 H35 Z"/>
+<path d="M35 132 H82 V169 H35 Z"/>
+<!-- T -->
+<path d="M283 63 H495 L464 110 H412 V237 H364 V110 H314 Z"/>
+<!-- A -->
+<path d="M516 237 L633 63 H681 L798 237 H741 L657 112 L574 237 Z"/>
+</g>
+<path d="M657 166 L701 237 H613 Z" fill="#00C9F5"/>
+<path d="M826 76 V227" stroke="#00C9F5" stroke-width="5"/>
+<text x="856" y="158" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="700" letter-spacing="2" textLength="323" lengthAdjust="spacingAndGlyphs">SISTEMAS</text>
+<text x="857" y="199" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="16" letter-spacing="1" textLength="322" lengthAdjust="spacingAndGlyphs">DESARROLLO  •  SOFTWARE  •  SOLUCIONES DIGITALES</text>
+</svg>
