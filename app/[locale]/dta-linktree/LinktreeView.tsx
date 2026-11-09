@@ -8,6 +8,7 @@ import { LanguageSwitcher } from "@/components/i18n/LanguageSwitcher";
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { linktreeContent } from "@/lib/i18n/linktreeContent";
+import Image from "next/image";
 
 const SOCIAL_ICONS = [
   { icon: Linkedin, href: "https://linkedin.com/company/dtasistemas", label: "LinkedIn" },
@@ -50,13 +51,26 @@ export function LinktreeView() {
             <LanguageSwitcher tone="dark" />
           </div>
 
-          {/* Logo */}
-          <div className="flex justify-center mb-6">
+          
+{/* Logo */}
+<div className="flex justify-center mb-6">
+  <div className="w-40 h-40 rounded-full bg-white flex items-center justify-center shadow-lg overflow-hidden">
+    <Image
+      src="/images/logos/DTA-A-RS.png"
+      alt="DTA Sistemas"
+      width={200}
+      height={200}
+      className="w-full h-full object-cover"
+    />
+  </div>
+</div>
+
+          {/*<div className="flex justify-center mb-6">
             <div className="w-28 h-28 rounded-full bg-white flex flex-col items-center justify-center shadow-lg">
               <div className="font-extrabold text-2xl text-dta-navy-900 tracking-tight leading-none">DTA</div>
               <div className="text-[9px] font-semibold tracking-widest text-dta-navy-900/70 mt-1">SISTEMAS</div>
             </div>
-          </div>
+          </div>*/}
 
           {/* Headline */}
           <h1 className="text-center text-2xl font-extrabold leading-snug">
