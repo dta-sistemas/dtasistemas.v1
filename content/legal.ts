@@ -156,7 +156,9 @@ const privacyEs: LegalDoc = {
       id: "cookies",
       title: "Cookies y analítica",
       body: [
-        "El sitio utiliza cookies y tecnologías similares para su funcionamiento y para medir el uso del sitio de forma agregada. Puede desactivarlas o eliminarlas desde la configuración de su navegador; hacerlo puede afectar algunas funciones.",
+        "Cookies necesarias: el sitio usa una cookie propia para recordar su elección sobre cookies y tecnologías técnicas para su funcionamiento, el idioma y la verificación anti-spam del formulario (Cloudflare Turnstile). Son indispensables y no requieren su consentimiento.",
+        "Cookies analíticas: solo con su consentimiento usamos Google Analytics y Google Tag Manager para medir el uso del sitio de forma agregada. No se cargan hasta que usted las acepta. Puede cambiar o retirar su decisión en cualquier momento desde «Preferencias de cookies», al pie de cada página; su elección se conserva por seis meses.",
+        "También puede desactivar o eliminar cookies desde la configuración de su navegador; hacerlo puede afectar algunas funciones.",
       ],
     },
     {
@@ -316,7 +318,9 @@ const privacyEn: LegalDoc = {
       id: "cookies",
       title: "Cookies and analytics",
       body: [
-        "The site uses cookies and similar technologies for it to work and to measure site usage in aggregate. You can disable or delete them in your browser settings; doing so may affect some features.",
+        "Necessary cookies: the site uses its own cookie to remember your cookie choice, plus technical technologies for it to work, for language and for the form's anti-spam verification (Cloudflare Turnstile). They are essential and do not require your consent.",
+        "Analytics cookies: only with your consent we use Google Analytics and Google Tag Manager to measure site usage in aggregate. They are not loaded until you accept them. You can change or withdraw your decision at any time from “Cookie preferences”, at the bottom of every page; your choice is kept for six months.",
+        "You can also disable or delete cookies in your browser settings; doing so may affect some features.",
       ],
     },
     {

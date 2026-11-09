@@ -8,6 +8,7 @@ import { routing } from "@/i18n/routing";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { GoogleTagManagerScript, GoogleTagManagerNoScript } from "@/components/analytics/GoogleTagManager";
 import { PageViewTracker } from "@/components/analytics/PageViewTracker";
+import { ConsentProvider } from "@/components/consent/ConsentProvider";
 import { SITE_URL } from "@/lib/site";
 import "@/styles/globals.css";
 
@@ -95,17 +96,17 @@ export default async function RootLayout({ children, params }: Props) {
 
   return (
     <html lang={locale} className={`${newsreader.variable} ${hanken.variable} ${jetbrains.variable}`}>
-      <head>
-        <GoogleTagManagerScript />
-      </head>
       <body>
-        <GoogleTagManagerNoScript />
-        <GoogleAnalytics />
-        <Suspense fallback={null}>
-          <PageViewTracker />
-        </Suspense>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
+          <ConsentProvider>
+            <GoogleTagManagerScript />
+            <GoogleTagManagerNoScript />
+            <GoogleAnalytics />
+            <Suspense fallback={null}>
+              <PageViewTracker />
+            </Suspense>
+            {children}
+          </ConsentProvider>
         </NextIntlClientProvider>
       </body>
     </html>

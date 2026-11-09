@@ -7,6 +7,7 @@ import { Container } from "../ui/Container";
 import { Logo } from "../ui/Logo";
 import { footerNav } from "@/data/navigation";
 import { SOCIAL_LINKS } from "@/lib/site";
+import { useConsent } from "../consent/ConsentProvider";
 
 const COLUMN_KEY_BY_TITLE: Record<string, "solucionesTitle" | "sectoresTitle" | "empresaTitle"> = {
   Soluciones: "solucionesTitle",
@@ -25,6 +26,8 @@ const linkStyles =
 
 export function Footer() {
   const t = useTranslations("footer");
+  const { openPreferences } = useConsent();
+  const tcookies = useTranslations("cookies");
   const socials = SOCIALS.filter((s) => SOCIAL_LINKS[s.key]);
 
   return (
@@ -82,6 +85,9 @@ export function Footer() {
             <Link href="/terminos-y-condiciones" className="transition-colors hover:text-white">
               {t("terms")}
             </Link>
+            <button type="button" onClick={openPreferences} className="transition-colors hover:text-white">
+              {tcookies("footerLink")}
+            </button>
           </div>
         </Container>
       </div>

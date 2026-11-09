@@ -1,6 +1,7 @@
 "use client";
 
 import Script from "next/script";
+import { useConsent } from "../consent/ConsentProvider";
 
 const GTM_CONTAINER_ID = process.env.NEXT_PUBLIC_GTM_CONTAINER_ID;
 
@@ -21,7 +22,9 @@ const GTM_CONTAINER_ID = process.env.NEXT_PUBLIC_GTM_CONTAINER_ID;
  * Si NEXT_PUBLIC_GTM_CONTAINER_ID no está configurada, no renderiza nada.
  */
 export function GoogleTagManagerScript() {
-  if (!GTM_CONTAINER_ID) return null;
+  const { analytics } = useConsent();
+  // Solo con consentimiento de cookies analíticas (ver ConsentProvider).
+  if (!GTM_CONTAINER_ID || !analytics) return null;
 
   return (
     <Script id="gtm-init" strategy="afterInteractive">
@@ -42,17 +45,7 @@ export function GoogleTagManagerScript() {
  * JavaScript deshabilitado.
  */
 export function GoogleTagManagerNoScript() {
-  if (!GTM_CONTAINER_ID) return null;
-
-  return (
-    <noscript>
-      <iframe
-        src={`https://www.googletagmanager.com/ns.html?id=${GTM_CONTAINER_ID}`}
-        height="0"
-        width="0"
-        style={{ display: "none", visibility: "hidden" }}
-        title="Google Tag Manager"
-      />
-    </noscript>
-  );
+  // Se retiró a propósito: el <noscript> de GTM carga el contenedor SIN que el visitante pueda
+  // dar su consentimiento (sin JavaScript no hay banner), lo que contradice el aviso de cookies.
+  return null;
 }

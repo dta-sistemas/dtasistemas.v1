@@ -1,6 +1,7 @@
 "use client";
 
 import Script from "next/script";
+import { useConsent } from "../consent/ConsentProvider";
 
 declare global {
   interface Window {
@@ -19,12 +20,16 @@ const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID;
  * <PageViewTracker /> en cada cambio de ruta — de lo contrario, GA4
  * subregistraría el tráfico interno del sitio.
  *
+ * Solo se carga si el visitante aceptó las cookies analíticas (ver ConsentProvider): antes de
+ * eso, y si las rechaza, no se descarga ningún script de Google.
+ *
  * Si NEXT_PUBLIC_GA4_MEASUREMENT_ID no está configurada, este componente no
  * renderiza nada — el sitio sigue funcionando normalmente en desarrollo sin
  * credenciales.
  */
 export function GoogleAnalytics() {
-  if (!GA_MEASUREMENT_ID) return null;
+  const { analytics } = useConsent();
+  if (!GA_MEASUREMENT_ID || !analytics) return null;
 
   return (
     <>

@@ -198,7 +198,18 @@
     "technologiesTitle": "Tecnología (cuando es relevante)",
     "relatedSectorsTitle": "Sectores donde más aplica",
     "ctaTitle": "¿Quieres resolver esto en tu empresa?",
-    "ctaText": "Empezamos con un diagnóstico para identificar qué hacer primero."
+    "ctaText": "Empezamos con un diagnóstico para identificar qué hacer primero.",
+    "useCasesLead": "Situaciones concretas donde esta solución cambia la operación.",
+    "deliverablesLead": "Lo que queda funcionando en tu empresa cuando terminamos.",
+    "deliverablesModule": "dta/entregables",
+    "sectorsIntro": "Elige un sector para ver la problemática que resolvemos y un ejemplo práctico.",
+    "sectorProblem": "Problemática del sector",
+    "sectorSolution": "Solución para más control y autonomía",
+    "sectorExample": "Ejemplo práctico",
+    "sectorIllustrative": "Ejemplo ilustrativo",
+    "ctaSecondary": "Hablar con un especialista",
+    "ctaIncludes": "Qué incluye el diagnóstico",
+    "ctaNote": "Tu información es confidencial y solo se usa para atender tu solicitud."
   },
   "auditPage": {
     "eyebrow": "DTA Digital Audit",
@@ -345,5 +356,22 @@
     "privacyLabel": "Aviso de privacidad",
     "termsLabel": "Términos y condiciones",
     "otherDocPrefix": "Consulta también:"
+  },
+  "cookies": {
+    "title": "Tu privacidad importa",
+    "text": "Usamos cookies necesarias para que el sitio funcione y, solo si lo permites, cookies analíticas para entender cómo se usa y mejorarlo. Tú decides.",
+    "privacy": "Aviso de privacidad",
+    "accept": "Aceptar todas",
+    "reject": "Solo necesarias",
+    "customize": "Personalizar",
+    "back": "Volver",
+    "save": "Guardar preferencias",
+    "close": "Cerrar",
+    "necessaryTitle": "Necesarias",
+    "necessaryText": "Funcionamiento del sitio, idioma y verificación anti-spam del formulario.",
+    "alwaysOn": "siempre activas",
+    "analyticsTitle": "Analíticas",
+    "analyticsText": "Google Analytics: medimos visitas y clics de forma agregada para mejorar el sitio.",
+    "footerLink": "Preferencias de cookies"
   }
 }

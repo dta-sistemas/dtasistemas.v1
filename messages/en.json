@@ -198,7 +198,18 @@
     "technologiesTitle": "Technology (when relevant)",
     "relatedSectorsTitle": "Industries where this applies most",
     "ctaTitle": "Want to solve this in your business?",
-    "ctaText": "We start with a diagnosis to identify what to do first."
+    "ctaText": "We start with a diagnosis to identify what to do first.",
+    "useCasesLead": "Concrete situations where this solution changes how the business runs.",
+    "deliverablesLead": "What is left working in your company when we finish.",
+    "deliverablesModule": "dta/deliverables",
+    "sectorsIntro": "Pick a sector to see the problem we solve and a practical example.",
+    "sectorProblem": "Sector challenge",
+    "sectorSolution": "Solution for more control and autonomy",
+    "sectorExample": "Practical example",
+    "sectorIllustrative": "Illustrative example",
+    "ctaSecondary": "Talk to a specialist",
+    "ctaIncludes": "What the assessment includes",
+    "ctaNote": "Your information is confidential and only used to handle your request."
   },
   "auditPage": {
     "eyebrow": "DTA Digital Audit",
@@ -345,5 +356,22 @@
     "privacyLabel": "Privacy notice",
     "termsLabel": "Terms and conditions",
     "otherDocPrefix": "See also:"
+  },
+  "cookies": {
+    "title": "Your privacy matters",
+    "text": "We use necessary cookies to make the site work and, only if you allow it, analytics cookies to understand how it is used and improve it. You decide.",
+    "privacy": "Privacy notice",
+    "accept": "Accept all",
+    "reject": "Necessary only",
+    "customize": "Customize",
+    "back": "Back",
+    "save": "Save preferences",
+    "close": "Close",
+    "necessaryTitle": "Necessary",
+    "necessaryText": "Site operation, language and anti-spam verification of the form.",
+    "alwaysOn": "always on",
+    "analyticsTitle": "Analytics",
+    "analyticsText": "Google Analytics: we measure visits and clicks in aggregate to improve the site.",
+    "footerLink": "Cookie preferences"
   }
 }
