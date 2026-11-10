@@ -67,9 +67,10 @@ export function AuditPreview() {
 }
 
 /**
- * Sección comercial "DTA Digital Audit" — la oferta de entrada y el ÚNICO bloque grande
- * en azul marino de la Home, para que pese lo que debe pesar. Comparte claves con
- * /soluciones/dta-digital-audit.
+ * Sección comercial "DTA Digital Audit" de la Home, con el mismo lenguaje que el cierre de las
+ * fichas de solución: panel azul marino con barra de módulo (dta/diagnostico). En escritorio es
+ * horizontal (titular y precio con botón en una fila, y los 4 entregables en otra fila de 4
+ * columnas); en el celular se apila: titular, entregables, precio y botón.
  */
 export function DigitalAudit() {
   const t = useTranslations("home");
@@ -77,39 +78,44 @@ export function DigitalAudit() {
   const tc = useTranslations("common");
 
   return (
-    <Section tone="dark">
-      <div className="grid gap-12 md:grid-cols-12 md:gap-16">
-        <div className="md:col-span-7">
-          <h2 className="text-h2 text-white">{t("auditTitle")}</h2>
-          <p className="mt-4 max-w-xl text-body-lg text-white/75">{t("auditText")}</p>
-          <ul className="mt-8 divide-y divide-white/15 border-y border-white/15">
-            {ITEM_KEYS.map((key) => (
-              <li key={key} className="flex items-start gap-3 py-3.5 text-[15px] text-white/90">
-                <CheckCircle2 size={17} className="mt-0.5 shrink-0 text-dta-blue-300" aria-hidden="true" />
-                {ta(key)}
-              </li>
-            ))}
-          </ul>
+    <Section tone="light">
+      <div data-tone="dark" className="overflow-hidden rounded-card bg-dta-navy-900 text-white">
+        <div className="flex items-center justify-between border-b border-white/10 px-5 py-2.5 font-mono text-xs text-white/55">
+          <span>dta/diagnostico</span>
+          <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-dta-blue-600 ring-4 ring-dta-blue-600/25" />
         </div>
-        <div className="self-end md:col-span-5">
-          <div className="rounded-card bg-white p-7 text-dta-black md:p-8">
-            <div className="text-sm text-dta-gray-600">{tc("desde")}</div>
-            <div className="tabular mt-1 font-serif text-5xl leading-none">
-              $4,900 <span className="font-sans text-base text-dta-gray-600">MXN</span>
+
+        <div className="grid gap-8 p-6 md:p-10 lg:grid-cols-12 lg:items-end lg:gap-12">
+          <div className="lg:col-span-7">
+            <h2 className="text-h2 text-white">{t("auditTitle")}</h2>
+            <p className="mt-4 max-w-xl text-body-lg text-white/70">{t("auditText")}</p>
+          </div>
+          <div className="flex flex-col gap-5 lg:col-span-5 lg:items-end">
+            <div className="tabular font-serif text-4xl leading-none">
+              <span className="mr-2 font-sans text-sm font-medium text-white/60">{tc("desde")}</span>
+              <span className="text-dta-blue-300">$4,900</span>
+              <span className="ml-1.5 font-sans text-sm font-medium text-white/60">MXN</span>
             </div>
-            <div className="mt-7">
-              <TrackedButton
-                href="/soluciones/dta-digital-audit"
-                variant="primary"
-                className="w-full"
-                trackLabel="solicitar-diagnostico"
-                trackSource="home-digital-audit"
-              >
-                {tc("solicitarDiagnostico")}
-              </TrackedButton>
-            </div>
+            <TrackedButton
+              href="/soluciones/dta-digital-audit"
+              variant="light"
+              className="w-full !px-8 !py-3.5 sm:w-auto"
+              trackLabel="solicitar-diagnostico"
+              trackSource="home-digital-audit"
+            >
+              {tc("solicitarDiagnostico")}
+            </TrackedButton>
           </div>
         </div>
+
+        <ul className="grid gap-px border-t border-white/15 bg-white/15 sm:grid-cols-2 lg:grid-cols-4">
+          {ITEM_KEYS.map((key) => (
+            <li key={key} className="flex items-start gap-3 bg-dta-navy-900 p-5 text-sm leading-relaxed text-white/85 md:p-6">
+              <CheckCircle2 size={17} className="mt-0.5 shrink-0 text-dta-blue-300" aria-hidden="true" />
+              {ta(key)}
+            </li>
+          ))}
+        </ul>
       </div>
     </Section>
   );

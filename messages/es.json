@@ -111,7 +111,12 @@
     "sectorsText": "Cada sector tiene sus propias herramientas desconectadas. Estas son las que más conectamos.",
     "stackTitle": "Construimos con tecnología probada",
     "stackText": "Elegimos las herramientas según el problema de tu empresa, no al revés. Esta es la base con la que trabajamos.",
-    "stackLabel": "Stack"
+    "stackLabel": "Stack",
+    "problemsLead": "Desliza para ver las situaciones más comunes.",
+    "carouselPrev": "Anterior",
+    "carouselNext": "Siguiente",
+    "careModule": "dta/care",
+    "careLead": "Soporte, monitoreo y evolución de tus sistemas."
   },
   "processSteps": {
     "entender": { "title": "Entender", "description": "Analizamos procesos, herramientas y datos de tu empresa." },
@@ -257,7 +262,13 @@
     "problemsPrefix": "Lo que vemos todo el tiempo en",
     "howWeHelpPrefix": "Cómo ayudamos en",
     "ctaTitle": "¿Listo para ordenar la tecnología de tu empresa?",
-    "ctaTextPrefix": "Empezamos con un diagnóstico enfocado en"
+    "ctaTextPrefix": "Empezamos con un diagnóstico enfocado en",
+    "problemsLead": "Situaciones que se repiten y que resolvemos.",
+    "systemsTitle": "Qué conectamos en",
+    "systemsLead": "Los sistemas que más conectamos en este sector.",
+    "systemsModule": "dta/sistemas",
+    "solutionsIntro": "Elige una solución para ver cómo se aplica en este sector, con un ejemplo práctico.",
+    "viewSolution": "Ver solución"
   },
   "proyectosHub": {
     "eyebrow": "Soluciones en acción",
@@ -271,7 +282,12 @@
     "technologyTitle": "Tecnología",
     "resultTitle": "Resultado",
     "belongsPrefix": "Este proyecto pertenece al sector",
-    "ctaTitle": "¿Tienes un reto parecido?"
+    "ctaTitle": "¿Tienes un reto parecido?",
+    "storyTitle": "Cómo se resolvió",
+    "storyLead": "El problema de partida y la solución que se construyó.",
+    "resultModule": "dta/resultado",
+    "technologyLead": "Con qué se construyó.",
+    "ctaText": "Empezamos con un diagnóstico para entender tu caso y definir qué hacer primero."
   },
   "blogPage": {
     "eyebrow": "Blog",

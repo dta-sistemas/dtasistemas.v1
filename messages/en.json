@@ -111,7 +111,12 @@
     "sectorsText": "Every sector has its own disconnected tools. These are the ones we connect most.",
     "stackTitle": "We build with proven technology",
     "stackText": "We choose tools to fit your company's problem, not the other way around. This is the foundation we work with.",
-    "stackLabel": "Stack"
+    "stackLabel": "Stack",
+    "problemsLead": "Swipe to see the most common situations.",
+    "carouselPrev": "Previous",
+    "carouselNext": "Next",
+    "careModule": "dta/care",
+    "careLead": "Support, monitoring and evolution of your systems."
   },
   "processSteps": {
     "entender": { "title": "Understand", "description": "We analyze your business processes, tools and data." },
@@ -257,7 +262,13 @@
     "problemsPrefix": "What we see all the time in",
     "howWeHelpPrefix": "How we help in",
     "ctaTitle": "Ready to put your business's technology in order?",
-    "ctaTextPrefix": "We start with a diagnosis focused on"
+    "ctaTextPrefix": "We start with a diagnosis focused on",
+    "problemsLead": "Situations that keep repeating and that we solve.",
+    "systemsTitle": "What we connect in",
+    "systemsLead": "The systems we connect most in this sector.",
+    "systemsModule": "dta/systems",
+    "solutionsIntro": "Pick a solution to see how it applies in this sector, with a practical example.",
+    "viewSolution": "View solution"
   },
   "proyectosHub": {
     "eyebrow": "Solutions in action",
@@ -271,7 +282,12 @@
     "technologyTitle": "Technology",
     "resultTitle": "Result",
     "belongsPrefix": "This project belongs to the",
-    "ctaTitle": "Have a similar challenge?"
+    "ctaTitle": "Have a similar challenge?",
+    "storyTitle": "How it was solved",
+    "storyLead": "The starting problem and the solution that was built.",
+    "resultModule": "dta/result",
+    "technologyLead": "What it was built with.",
+    "ctaText": "We start with an assessment to understand your case and define what to do first."
   },
   "blogPage": {
     "eyebrow": "Blog",
