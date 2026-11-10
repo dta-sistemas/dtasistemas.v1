@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { analytics } from "@/lib/analytics/events";
 
@@ -16,8 +16,15 @@ import { analytics } from "@/lib/analytics/events";
 export function PageViewTracker() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  // La carga inicial ya la reporta gtag.js al hacer `config` (ver GoogleAnalytics): se omite la
+  // primera ejecución para no duplicarla. Solo se reportan los cambios de ruta posteriores.
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     const query = searchParams.toString();
     const url = query ? `${pathname}?${query}` : pathname;
     analytics.pageView(url);

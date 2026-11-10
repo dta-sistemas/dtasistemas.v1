@@ -14,11 +14,14 @@ const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID;
 /**
  * Instalación directa de Google Analytics 4 (gtag.js) — Fase 0, sección 19.
  *
- * `send_page_view: false` es intencional: en una app de Next.js App Router
- * (client-side navigation entre rutas), gtag.js solo detecta la carga
- * inicial de página. Los page_view de navegaciones posteriores los dispara
- * <PageViewTracker /> en cada cambio de ruta — de lo contrario, GA4
- * subregistraría el tráfico interno del sitio.
+ * La página vista de la CARGA INICIAL la envía gtag.js por sí mismo al ejecutar `config`
+ * (page_location correcto, y también si el visitante acepta las cookies a mitad de la visita).
+ * Las de las navegaciones internas posteriores (App Router no recarga la página) las dispara
+ * <PageViewTracker /> en cada cambio de ruta.
+ *
+ * Antes se usaba `send_page_view: false` y la carga inicial dependía de PageViewTracker, pero
+ * ese componente se ejecuta ANTES de que exista window.gtag: la primera página vista de cada
+ * visita se perdía, y con ella la página de entrada (la más importante para atribución).
  *
  * Solo se carga si el visitante aceptó las cookies analíticas (ver ConsentProvider): antes de
  * eso, y si las rechaza, no se descarga ningún script de Google.
@@ -43,7 +46,7 @@ export function GoogleAnalytics() {
           function gtag(){dataLayer.push(arguments);}
           window.gtag = gtag;
           gtag('js', new Date());
-          gtag('config', '${GA_MEASUREMENT_ID}', { send_page_view: false });
+          gtag('config', '${GA_MEASUREMENT_ID}');
         `}
       </Script>
     </>

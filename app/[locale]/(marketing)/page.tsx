@@ -10,8 +10,7 @@ import { Differentiation } from "@/components/sections/Differentiation";
 import { SectorsSection } from "@/components/sections/SectorsSection";
 import { ProjectsInAction } from "@/components/sections/ProjectsInAction";
 import { DigitalAudit } from "@/components/sections/DigitalAudit";
-import { DTACareSection } from "@/components/sections/DTACareSection";
-import { FinalCTA } from "@/components/sections/FinalCTA";
+import { CareAndContact } from "@/components/sections/CareAndContact";
 import { buildAlternates } from "@/lib/seo/alternates";
 import type { AppLocale } from "@/i18n/routing";
 
@@ -45,8 +44,7 @@ export default async function HomePage({ params }: Props) {
       <SectorsSection />
       <ProjectsInAction />
       <DigitalAudit />
-      <DTACareSection />
-      <FinalCTA title={t("finalCtaTitle")} text={t("finalCtaText")} source="final-cta" />
+      <CareAndContact title={t("finalCtaTitle")} text={t("finalCtaText")} />
     </>
   );
 }

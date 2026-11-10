@@ -108,6 +108,14 @@
 }
 
 @layer components {
+  /* Carruseles con desplazamiento táctil: sin barra visible, el gesto de deslizar es la interfaz. */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
   /* Contenedor estándar — usado por components/ui/Container.tsx */
   .dta-container {
     @apply w-full mx-auto px-5 sm:px-8 md:px-16;

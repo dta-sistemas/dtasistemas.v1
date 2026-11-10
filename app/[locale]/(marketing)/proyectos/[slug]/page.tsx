@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Section } from "@/components/ui/Section";
-import { Reveal } from "@/components/ui/Reveal";
 import { PageHero, HeroPanel } from "@/components/sections/PageHero";
 import { CaseSchematic } from "@/components/sections/CaseSchematic";
-import { CTABand } from "@/components/sections/CTABand";
+import { ConversionCTA } from "@/components/sections/ConversionCTA";
 import { Button } from "@/components/ui/Button";
 import { Link } from "@/i18n/navigation";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -76,48 +75,68 @@ export default async function ProyectoDetallePage({ params }: Props) {
         }
       />
 
+      {/* Cómo se resolvió: problema y solución con numerales grandes, igual que los casos de uso. */}
       <Section tone="light">
-        <div className="grid gap-5 md:grid-cols-2">
-          {[
-            { title: t("problemTitle"), text: project.problem },
-            { title: t("solutionTitle"), text: project.solution },
-          ].map((b, i) => (
-            <Reveal key={b.title} delay={i * 90} className="h-full">
-              <div className="h-full border-t border-dta-black pt-5">
-                <div className="mb-3 flex items-center gap-2 text-label uppercase text-dta-blue-600">
-                  <span className="grid h-6 w-6 place-items-center rounded-full bg-dta-blue-100 text-[11px] font-bold">{i + 1}</span>
-                  {b.title}
-                </div>
-                <p className="leading-relaxed text-dta-black/80">{b.text}</p>
-              </div>
-            </Reveal>
-          ))}
+        <div className="max-w-2xl">
+          <h2 className="text-h2 text-dta-black">{t("storyTitle")}</h2>
+          <p className="mt-3 text-body-lg text-dta-gray-600">{t("storyLead")}</p>
         </div>
+        <ol className="mt-10 grid gap-5 md:grid-cols-2">
+          {[
+            { n: "01", title: t("problemTitle"), text: project.problem },
+            { n: "02", title: t("solutionTitle"), text: project.solution },
+          ].map((b) => (
+            <li key={b.n} className="flex gap-6 rounded-card border border-dta-gray-200 bg-white p-7 md:p-8">
+              <span aria-hidden="true" className="tabular font-serif text-6xl leading-[0.9] text-dta-blue-600">
+                {b.n}
+              </span>
+              <div>
+                <h3 className="text-sm font-semibold text-dta-gray-600">{b.title}</h3>
+                <p className="mt-2 text-lg leading-relaxed text-dta-black">{b.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </Section>
 
-        <div className="mt-5 grid gap-5 md:grid-cols-2">
-          <div className="rounded-card border border-dta-gray-200 bg-dta-gray-50 p-6 md:p-7">
-            <div className="mb-3 text-label uppercase text-dta-gray-600">{t("technologyTitle")}</div>
-            <div className="flex flex-wrap gap-2">
-              {project.technology.map((techName) => (
-                <span key={techName} className="rounded-full border border-dta-gray-200 bg-white px-3.5 py-1.5 text-sm text-dta-gray-700">
-                  {techName}
-                </span>
-              ))}
-            </div>
+      {/* Resultado y tecnología: bloque azul marino, igual que "Qué recibe tu empresa". */}
+      <Section tone="subtle">
+        <div data-tone="dark" className="overflow-hidden rounded-card bg-dta-navy-900 text-white">
+          <div className="flex items-center justify-between gap-3 border-b border-white/10 px-5 py-2.5 font-mono text-xs text-white/55">
+            <span>{t("resultModule")}</span>
+            <span className="flex items-center gap-2">
+              <span className="rounded border border-white/20 px-1.5 py-px text-[10px] text-white/70">{tHome("caseBadge")}</span>
+              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-dta-blue-600 ring-4 ring-dta-blue-600/25" />
+            </span>
           </div>
-          <div className="rounded-card border border-dta-blue-100 bg-dta-blue-50 p-6 md:p-7">
-            <div className="mb-3 text-label uppercase text-dta-blue-600">{t("resultTitle")}</div>
-            <p className="text-lg font-semibold leading-snug text-dta-black">{project.result}</p>
+          <div className="grid gap-8 p-6 md:grid-cols-12 md:gap-12 md:p-10">
+            <div className="md:col-span-4">
+              <h2 className="text-h2 text-white">{t("resultTitle")}</h2>
+              <span aria-hidden="true" className="mt-5 inline-block h-1 w-12 rounded-full bg-dta-blue-600" />
+            </div>
+            <p className="font-serif text-2xl leading-snug text-white md:col-span-8 md:text-[1.9rem] md:leading-snug">{project.result}</p>
+          </div>
+          <div className="border-t border-white/15 px-6 py-6 md:px-10">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+              <div className="text-sm font-semibold text-white/60">{t("technologyTitle")}</div>
+              <ul className="flex flex-wrap gap-2">
+                {project.technology.map((techName) => (
+                  <li key={techName} className="rounded border border-white/20 px-2.5 py-1 font-mono text-xs text-white/85">
+                    {techName}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </Section>
 
       {sector && (
-        <Section tone="subtle">
-          <div className="flex items-center justify-between flex-wrap gap-4">
-            <div className="text-sm text-dta-gray-600">
+        <Section tone="light" className="!pb-0 md:!pb-0">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-y border-dta-gray-200 py-6">
+            <div className="text-dta-gray-700">
               {t("belongsPrefix")}{" "}
-              <Link href={sector.href} className="text-dta-blue-600 font-semibold hover:underline">
+              <Link href={sector.href} className="font-semibold text-dta-blue-600 hover:underline">
                 {sector.name}
               </Link>
               .
@@ -129,7 +148,7 @@ export default async function ProyectoDetallePage({ params }: Props) {
         </Section>
       )}
 
-      <CTABand title={t("ctaTitle")} href="/contacto" label={tc("hablarConDTA")} />
+      <ConversionCTA locale={locale} title={t("ctaTitle")} text={t("ctaText")} source={`project-${project.slug}`} />
     </div>
   );
 }

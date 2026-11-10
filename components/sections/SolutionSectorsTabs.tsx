@@ -22,7 +22,8 @@ type Labels = {
 };
 
 /**
- * "Sectores donde más aplica" como pestañas: la lista de sectores a un costado (en móvil, una
+ * Pestañas de master-detalle. En las fichas de solución: "Sectores donde más aplica"; en las de
+ * sector: "Cómo ayudamos en…" (lista de soluciones). Es el mismo patrón en ambos sentidos: la lista de sectores a un costado (en móvil, una
  * fila deslizable arriba) y, al elegir uno, un panel con 1) la problemática del sector, 2) la
  * solución para más control y autonomía en puntos principales y 3) un ejemplo práctico.
  *
@@ -30,7 +31,18 @@ type Labels = {
  * moverse. Todos los paneles están en el HTML (los inactivos con `hidden`), así el contenido es
  * visible para buscadores aunque solo se muestre uno a la vez.
  */
-export function SolutionSectorsTabs({ items, labels, idPrefix }: { items: SectorTabItem[]; labels: Labels; idPrefix: string }) {
+export function SolutionSectorsTabs({
+  items,
+  labels,
+  idPrefix,
+  headerPrefix = "dta/sector/",
+}: {
+  items: SectorTabItem[];
+  labels: Labels;
+  idPrefix: string;
+  /** Prefijo de la barra del panel: "dta/sector/" en las fichas de solución, "dta/solucion/" en las de sector. */
+  headerPrefix?: string;
+}) {
   const [active, setActive] = useState(0);
   const refs = useRef<(HTMLButtonElement | null)[]>([]);
 
@@ -91,7 +103,7 @@ export function SolutionSectorsTabs({ items, labels, idPrefix }: { items: Sector
         })}
       </div>
 
-      <div className="md:col-span-8">
+      <div className="min-w-0 md:col-span-8">
         {items.map((s, i) => (
           <div
             key={s.slug}
@@ -102,8 +114,9 @@ export function SolutionSectorsTabs({ items, labels, idPrefix }: { items: Sector
             className="overflow-hidden rounded-card border border-dta-gray-200 bg-white"
           >
             <div className="flex items-center justify-between gap-3 border-b border-white/10 bg-dta-navy-800 px-5 py-2.5 font-mono text-[11px] text-white/55">
-              <span className="truncate">
-                dta/sector/<span className="text-white/90">{s.slug}</span>
+              <span className="min-w-0 truncate">
+                {headerPrefix}
+                <span className="text-white/90">{s.slug}</span>
               </span>
               <span className="flex shrink-0 items-center gap-2">
                 <span className="rounded border border-white/20 px-1.5 py-px text-[10px] text-white/70">{labels.illustrative}</span>
