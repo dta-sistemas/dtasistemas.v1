@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { useConsent } from "./ConsentProvider";
 
 /**
@@ -13,6 +13,9 @@ import { useConsent } from "./ConsentProvider";
  */
 export function CookieBanner() {
   const t = useTranslations("cookies");
+  // En el Linktree (pantalla de celular con un botón principal) el aviso va centrado, más bajo y
+  // más compacto para no tapar las acciones.
+  const compact = usePathname().startsWith("/dta-linktree");
   const { open, analytics, decided, save, closePanel } = useConsent();
   const [custom, setCustom] = useState(false);
   const [draft, setDraft] = useState(false);
@@ -32,12 +35,16 @@ export function CookieBanner() {
       role="dialog"
       aria-modal="false"
       aria-labelledby="cookie-title"
-      className="fixed inset-x-3 bottom-3 z-[60] mx-auto max-w-md rounded-card border border-dta-gray-200 bg-white p-5 shadow-card-hover sm:inset-x-auto sm:bottom-5 sm:left-5 sm:mx-0"
+      className={`fixed z-[60] rounded-card border border-dta-gray-200 bg-white shadow-card-hover ${
+        compact
+          ? "inset-x-3 bottom-3 mx-auto max-w-sm p-4 text-dta-black"
+          : "inset-x-3 bottom-3 mx-auto max-w-md p-5 sm:inset-x-auto sm:bottom-5 sm:left-5 sm:mx-0"
+      }`}
     >
       <h2 id="cookie-title" className="font-serif text-xl leading-tight text-dta-black">
         {t("title")}
       </h2>
-      <p className="mt-2 text-sm leading-relaxed text-dta-gray-700">
+      <p className={`mt-2 leading-relaxed text-dta-gray-700 ${compact ? "text-xs" : "text-sm"}`}>
         {t("text")}{" "}
         <Link href="/aviso-de-privacidad" className="font-semibold text-dta-blue-600 underline underline-offset-2">
           {t("privacy")}

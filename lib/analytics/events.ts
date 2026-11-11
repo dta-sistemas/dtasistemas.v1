@@ -27,6 +27,9 @@ export const analytics = {
   whatsappClick: () => track("whatsapp_click"),
   phoneClick: () => track("phone_click"),
   emailClick: () => track("email_click"),
+  /** Clic en un enlace del Linktree: `linkId` identifica el enlace y `position` su lugar en la página (1 = primero). */
+  linktreeClick: (linkId: string, position: number, locale: string) =>
+    track("linktree_click", { link_id: linkId, position, locale }),
   blogRead: (slug: string) => track("blog_read", { slug }),
   solutionView: (slug: string) => track("solution_view", { slug }),
   sectorView: (slug: string) => track("sector_view", { slug }),
