@@ -23,7 +23,7 @@ const INTENT_TO_HELP_TYPE: Record<string, ContactFormValues["helpType"]> = {
   desarrollo: "desarrollo-digital",
 };
 
-type Props = { params: Promise<{ locale: AppLocale }>; searchParams: Promise<{ intent?: string }> };
+type Props = { params: Promise<{ locale: AppLocale }>; searchParams: Promise<{ intent?: string; source?: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -34,7 +34,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ContactoPage({ params, searchParams }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const { intent } = await searchParams;
+  const { intent, source: rawSource } = await searchParams;
+  // Origen del contacto (ej. "linktree"). Antes solo se leía `intent`, así que un enlace con
+  // ?source=linktree perdía su origen y el lead quedaba registrado como "audit". Se sanea porque
+  // viene de la URL y termina en un correo y (pronto) en una base de datos.
+  const cleanSource = rawSource && /^[a-z0-9_-]{1,40}$/i.test(rawSource) ? rawSource.toLowerCase() : undefined;
+  const leadSource = cleanSource ? (intent ? `${cleanSource}-${intent}` : cleanSource) : (intent ?? "contacto-directo");
   const defaultHelpType = intent ? INTENT_TO_HELP_TYPE[intent] : undefined;
   const t = await getTranslations({ locale, namespace: "contactoPage" });
 
@@ -99,7 +104,7 @@ export default async function ContactoPage({ params, searchParams }: Props) {
 
           <div>
             <h2 className="text-h3 text-dta-black mb-4">{t("formTitle")}</h2>
-            <ContactForm source={intent ?? "contacto-directo"} defaultHelpType={defaultHelpType} />
+            <ContactForm source={leadSource} defaultHelpType={defaultHelpType} />
           </div>
         </div>
       </Section>
