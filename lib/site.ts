@@ -49,3 +49,19 @@ export const LEGAL = {
  * TODO: completar con el número real de DTA.
  */
 export const WHATSAPP_NUMBER: string | undefined = undefined;
+
+/**
+ * Contacto DIRECTO del Linktree (/dta-linktree). Es independiente del contacto del sitio
+ * (WHATSAPP_NUMBER y el correo de contacto): el Linktree se usa en eventos y negociaciones para
+ * intercambiar datos de contacto directamente, así que NUNCA toma como respaldo los datos del
+ * sitio. Si un dato queda vacío, su botón o fila simplemente no se muestra.
+ *
+ *  - whatsapp: solo dígitos con lada de país (ej. "5219981234567"). Se admiten "+" y espacios.
+ *  - email: correo directo, ej. "nombre@dtasistemas.com".
+ *
+ * TODO: completar con el WhatsApp y el correo directos.
+ */
+export const LINKTREE_CONTACT: { whatsapp?: string; email?: string } = {
+  whatsapp: undefined,
+  email: undefined,
+};

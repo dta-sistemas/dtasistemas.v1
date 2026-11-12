@@ -8,7 +8,7 @@ import { LanguageSwitcher } from "@/components/i18n/LanguageSwitcher";
 import { useConsent } from "@/components/consent/ConsentProvider";
 import { Link } from "@/i18n/navigation";
 import { linktreeContent } from "@/lib/i18n/linktreeContent";
-import { SOCIAL_LINKS, WHATSAPP_NUMBER } from "@/lib/site";
+import { LINKTREE_CONTACT, SOCIAL_LINKS } from "@/lib/site";
 import { analytics } from "@/lib/analytics/events";
 import { withUtm } from "@/lib/utm";
 
@@ -19,7 +19,9 @@ import { withUtm } from "@/lib/utm";
  * solo cuando algo está "conectado".
  *
  * Qué cambió respecto a la versión anterior:
- *  - WhatsApp y redes salen de lib/site.ts (una sola fuente). Antes el botón apuntaba a un
+ *  - El WhatsApp y el correo del Linktree salen de LINKTREE_CONTACT (lib/site.ts): son un contacto
+ *    DIRECTO, independiente del contacto del sitio, y no tienen respaldo en él. Las redes salen de
+ *    SOCIAL_LINKS (una sola fuente). Antes el botón apuntaba a un
  *    número inventado y las redes eran URLs adivinadas; ahora, si no hay dato, no se muestra.
  *  - Las filas de soluciones ahora SÍ son enlaces (antes tenían flecha pero no llevaban a nada).
  *  - Cada enlace se mide (`linktree_click`) y lleva utm_* para atribuir la sesión y el lead.
@@ -29,7 +31,10 @@ export function LinktreeView() {
   const t = linktreeContent[locale];
   const { openPreferences } = useConsent();
 
-  const waHref = WHATSAPP_NUMBER ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t.waMessage)}` : null;
+  // Contacto directo del Linktree (independiente del sitio). Se normaliza por si se escribió con "+" o espacios.
+  const waNumber = LINKTREE_CONTACT.whatsapp?.replace(/\D/g, "") || undefined;
+  const directEmail = LINKTREE_CONTACT.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(LINKTREE_CONTACT.email) ? LINKTREE_CONTACT.email : undefined;
+  const waHref = waNumber ? `https://wa.me/${waNumber}?text=${encodeURIComponent(t.waMessage)}` : null;
   const socials = (
     [
       { id: "linkedin", icon: Linkedin, label: "LinkedIn", href: SOCIAL_LINKS.linkedin },
@@ -73,10 +78,7 @@ export function LinktreeView() {
               href={waHref}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => {
-                hit("cta-whatsapp")();
-                analytics.whatsappClick();
-              }}
+              onClick={hit("cta-whatsapp")}
               className="flex h-12 items-center justify-center gap-2 rounded-full border border-white/30 text-sm font-semibold transition-colors duration-150 hover:border-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               <MessageCircle size={17} aria-hidden="true" />
@@ -141,25 +143,19 @@ export function LinktreeView() {
 
         <SectionLabel>{t.contactLabel}</SectionLabel>
         <div className="space-y-2">
-          {WHATSAPP_NUMBER && (
+          {waNumber && (
             <a
-              href={`https://wa.me/${WHATSAPP_NUMBER}`}
+              href={`https://wa.me/${waNumber}`}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => {
-                hit("contacto-whatsapp")();
-                analytics.whatsappClick();
-              }}
+              onClick={hit("contacto-whatsapp")}
               className={rowBase}
             >
               <MessageCircle size={18} className="shrink-0 text-dta-blue-300" aria-hidden="true" />
-              <span className="flex-1">
-                <span className="block text-sm font-medium">+{WHATSAPP_NUMBER}</span>
-                <span className="block text-xs text-white/55">{t.schedule}</span>
-              </span>
+              <span className="text-sm font-medium">+{waNumber}</span>
             </a>
           )}
-          <EmailRow copyLabel={t.emailCopy} copiedLabel={t.emailCopied} onUse={hit("contacto-correo")} rowClass={rowBase} />
+          {directEmail && <EmailRow email={directEmail} copyLabel={t.emailCopy} copiedLabel={t.emailCopied} onUse={hit("contacto-correo")} rowClass={rowBase} />}
           <div className="flex min-h-12 items-center gap-3 px-3.5 text-sm text-white/85">
             <MapPin size={18} className="shrink-0 text-dta-blue-300" aria-hidden="true" />
             Cancún, Quintana Roo, México
@@ -307,9 +303,8 @@ function Glyph({ slug }: { slug: string }) {
 }
 
 /** Correo: abre el cliente de correo al tocar y, con el botón, se copia (útil dentro del navegador de Instagram). */
-function EmailRow({ copyLabel, copiedLabel, onUse, rowClass }: { copyLabel: string; copiedLabel: string; onUse: () => void; rowClass: string }) {
+function EmailRow({ email, copyLabel, copiedLabel, onUse, rowClass }: { email: string; copyLabel: string; copiedLabel: string; onUse: () => void; rowClass: string }) {
   const [copied, setCopied] = useState(false);
-  const email = "contacto@dtasistemas.com";
 
   const copy = async () => {
     try {
@@ -326,10 +321,7 @@ function EmailRow({ copyLabel, copiedLabel, onUse, rowClass }: { copyLabel: stri
     <div className="flex items-stretch gap-2">
       <a
         href={`mailto:${email}`}
-        onClick={() => {
-          onUse();
-          analytics.emailClick();
-        }}
+        onClick={onUse}
         className={`${rowClass} flex-1`}
       >
         <Mail size={18} className="shrink-0 text-dta-blue-300" aria-hidden="true" />

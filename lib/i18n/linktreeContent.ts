@@ -19,7 +19,6 @@ export type LinktreeContent = {
   auditFrom: string;
   auditCta: string;
   contactLabel: string;
-  schedule: string;
   emailCopy: string;
   emailCopied: string;
   followLabel: string;
@@ -58,7 +57,6 @@ export const linktreeContent: Record<"es" | "en", LinktreeContent> = {
     auditFrom: "Desde",
     auditCta: "Solicitar diagnóstico",
     contactLabel: "Contacto",
-    schedule: "Lun - Vie 9:00 - 18:00",
     emailCopy: "Copiar correo",
     emailCopied: "Copiado",
     followLabel: "Síguenos",
@@ -91,7 +89,6 @@ export const linktreeContent: Record<"es" | "en", LinktreeContent> = {
     auditFrom: "From",
     auditCta: "Request an assessment",
     contactLabel: "Contact",
-    schedule: "Mon - Fri 9:00 - 18:00",
     emailCopy: "Copy email",
     emailCopied: "Copied",
     followLabel: "Follow us",
