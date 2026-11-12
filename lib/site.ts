@@ -62,6 +62,6 @@ export const WHATSAPP_NUMBER: string | undefined = undefined;
  * TODO: completar con el WhatsApp y el correo directos.
  */
 export const LINKTREE_CONTACT: { whatsapp?: string; email?: string } = {
-  whatsapp: undefined,
-  email: undefined,
+  whatsapp:'52 998 366 2992',
+  email: 'proyectos@dtasistemas.com',
 };
