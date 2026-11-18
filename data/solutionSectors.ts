@@ -204,6 +204,106 @@ const es: Record<string, SectorCase> = {
     example:
       "Un hotel lanzó un sitio con motor de reservas directo y tarifas actualizadas. Los huéspedes reservan sin irse al sitio de una plataforma, y el hotel conserva el contacto y la relación con ellos.",
   },
+
+  // ---- DTA Digital Audit: "qué descubre el diagnóstico" en cada sector ----
+  "dta-digital-audit:turismo": {
+    problem:
+      "Las reservas, los pagos y la atención se reparten entre OTAs, WhatsApp y hojas de cálculo, y nadie tiene claro cuánto tiempo del equipo se va en conciliar canales.",
+    solution: [
+      "Mapa de cómo viaja una reserva de principio a fin",
+      "Qué herramientas se hablan entre sí y cuáles obligan a capturar dos veces",
+      "Dónde se originan los desfases de disponibilidad y tarifas",
+      "Una lista priorizada de qué conectar o automatizar primero",
+    ],
+    example:
+      "Una operadora de tours descubrió con el diagnóstico que su mayor pérdida de tiempo no estaba en las ventas, sino en reconciliar la disponibilidad entre canales cada mañana. Eso definió por dónde empezar: conectar el inventario antes de rediseñar el sitio.",
+  },
+  "dta-digital-audit:hoteleria": {
+    problem:
+      "El PMS, el channel manager y las hojas del equipo conviven sin una visión común, y las decisiones de tarifa se toman con datos parciales.",
+    solution: [
+      "Radiografía de los sistemas del hotel y de cómo intercambian datos",
+      "Identificación de capturas duplicadas en recepción y en revenue",
+      "Qué indicadores existen, cuáles faltan y dónde viven",
+      "Roadmap con mejoras rápidas y proyectos de mayor alcance",
+    ],
+    example:
+      "Un hotel boutique mapeó con el diagnóstico quién captura qué y dónde. Descubrió que dos áreas capturaban la misma tarifa en sistemas distintos, y eso marcó la primera integración a resolver.",
+  },
+  "dta-digital-audit:inmobiliario": {
+    problem:
+      "Cada asesor trabaja con sus propios archivos y los prospectos se enfrían entre portales, mensajes y correos. La dirección no ve el embudo completo.",
+    solution: [
+      "Recorrido real de un prospecto, del primer mensaje a la visita",
+      "Dónde se pierde o se retrasa el seguimiento",
+      "Qué datos del embudo existen y cuáles hoy no se miden",
+      "Prioridades: CRM, automatización de respuesta o tablero comercial",
+    ],
+    example:
+      "Una desarrolladora usó el diagnóstico para seguir el recorrido de un prospecto. Encontró que la mayor fuga era el tiempo de primera respuesta, y por eso su primer proyecto fue automatizar la atención inicial.",
+  },
+  "dta-digital-audit:servicios": {
+    problem:
+      "Las cotizaciones, la agenda y la facturación viven en herramientas distintas y el equipo repite capturas. Se siente que se trabaja mucho, pero no se sabe dónde se va el tiempo.",
+    solution: [
+      "Mapa de procesos: cotizar, agendar, ejecutar y cobrar",
+      "Qué tareas se repiten y cuánto tiempo consumen",
+      "Qué sistemas ya tienes y cómo aprovecharlos mejor",
+      "Plan de mejoras ordenado por impacto y esfuerzo",
+    ],
+    example:
+      "Una empresa de servicios descubrió que su cuello de botella era recapturar datos entre la cotización y la factura. El diagnóstico lo puso como primera prioridad, antes de pensar en software nuevo.",
+  },
+
+  // ---- DTA Care: "cómo lo cuida DTA Care" en cada sector ----
+  "dta-care:turismo": {
+    problem:
+      "En temporada alta una falla de la reserva en línea o de la sincronización cuesta ventas, y en temporada baja nadie revisa los sistemas hasta que algo se rompe.",
+    solution: [
+      "Monitoreo de disponibilidad de la reserva en línea y de los conectores",
+      "Revisión previa a temporada alta para llegar con todo actualizado",
+      "Atención de incidentes con tiempo de respuesta acordado",
+      "Ajustes y mejoras incrementales a lo largo del año",
+    ],
+    example:
+      "Una operadora de tours contrató el cuidado continuo de su sistema de reservas. Antes de la temporada alta se actualizaron dependencias y se probaron los conectores, y durante el año los ajustes pequeños se atendieron sin abrir un proyecto nuevo.",
+  },
+  "dta-care:hoteleria": {
+    problem:
+      "Si la sincronización entre el PMS y los canales falla un fin de semana, el hotel se entera cuando ya hay una reserva duplicada.",
+    solution: [
+      "Alertas cuando una integración se detiene o se desfasa",
+      "Actualizaciones de seguridad de los sistemas conectados",
+      "Soporte ante incidentes con respuesta acordada",
+      "Reporte periódico del estado de tus sistemas",
+    ],
+    example:
+      "Un hotel boutique sumó monitoreo a sus integraciones. Cuando un conector dejó de sincronizar tarifas, el aviso llegó antes de que afectara una reserva y se corrigió el mismo día.",
+  },
+  "dta-care:inmobiliario": {
+    problem:
+      "El CRM y el sitio crecen con cada campaña, pero nadie los mantiene: formularios que dejan de llegar, integraciones desactualizadas y catálogos con errores.",
+    solution: [
+      "Verificación de que cada formulario siga llegando al CRM",
+      "Mantenimiento del catálogo y de las integraciones",
+      "Respaldos y actualizaciones de seguridad",
+      "Mejoras incrementales por campaña o proyecto nuevo",
+    ],
+    example:
+      "Una inmobiliaria mantiene con DTA Care su catálogo y su CRM. Cuando un formulario de contacto dejó de entregar solicitudes tras una actualización, el monitoreo lo detectó y se corrigió antes de perder prospectos.",
+  },
+  "dta-care:servicios": {
+    problem:
+      "Los sistemas internos dependen de una sola persona que ya no tiene tiempo, y los pequeños errores se acumulan hasta volverse un problema.",
+    solution: [
+      "Un equipo externo que conoce el sistema y responde ante fallas",
+      "Mantenimiento preventivo para no depender de emergencias",
+      "Ajustes menores incluidos conforme cambia el proceso",
+      "Documentación al día, para no depender de la memoria de nadie",
+    ],
+    example:
+      "Una empresa de servicios dejó el mantenimiento de su sistema de cotizaciones y agenda en manos de DTA Care. Los ajustes pequeños se atienden dentro del plan y su equipo se enfoca en atender clientes, no en arreglar herramientas.",
+  },
 };
 
 const en: Record<string, SectorCase> = {
@@ -390,6 +490,106 @@ const en: Record<string, SectorCase> = {
     ],
     example:
       "A hotel launched a site with a direct booking engine and up-to-date rates. Guests book without leaving for a platform's site, and the hotel keeps the contact and the relationship with them.",
+  },
+
+  // ---- DTA Digital Audit: what the assessment uncovers in each sector ----
+  "dta-digital-audit:turismo": {
+    problem:
+      "Bookings, payments and customer service are spread across OTAs, WhatsApp and spreadsheets, and nobody is clear on how much of the team's time goes into reconciling channels.",
+    solution: [
+      "A map of how a booking travels from start to finish",
+      "Which tools talk to each other and which force double entry",
+      "Where availability and rate mismatches originate",
+      "A prioritized list of what to connect or automate first",
+    ],
+    example:
+      "A tour operator found through the assessment that its biggest time loss was not in sales but in reconciling availability across channels every morning. That defined where to start: connect the inventory before redesigning the site.",
+  },
+  "dta-digital-audit:hoteleria": {
+    problem:
+      "The PMS, the channel manager and the team's spreadsheets coexist without a shared view, and rate decisions are made with partial data.",
+    solution: [
+      "An x-ray of the hotel's systems and how they exchange data",
+      "Identification of duplicate entries at the front desk and in revenue",
+      "Which indicators exist, which are missing and where they live",
+      "A roadmap with quick wins and larger projects",
+    ],
+    example:
+      "A boutique hotel used the assessment to map who enters what and where. It found two departments entering the same rate in different systems, and that set the first integration to solve.",
+  },
+  "dta-digital-audit:inmobiliario": {
+    problem:
+      "Each agent works with their own files and prospects go cold between portals, messages and emails. Management can't see the whole funnel.",
+    solution: [
+      "A real walk-through of a prospect, from first message to visit",
+      "Where follow-up gets lost or delayed",
+      "Which funnel data exists and which is not measured today",
+      "Priorities: CRM, reply automation or a sales dashboard",
+    ],
+    example:
+      "A developer used the assessment to follow a prospect's journey. It found the biggest leak was first-response time, so its first project was automating the initial reply.",
+  },
+  "dta-digital-audit:servicios": {
+    problem:
+      "Quotes, scheduling and invoicing live in different tools and the team repeats data entry. It feels like everyone works a lot, but nobody knows where the time goes.",
+    solution: [
+      "A process map: quote, schedule, deliver and collect",
+      "Which tasks repeat and how much time they take",
+      "Which systems you already have and how to use them better",
+      "An improvement plan ordered by impact and effort",
+    ],
+    example:
+      "A services company discovered its bottleneck was re-entering data between the quote and the invoice. The assessment made that the first priority, before thinking about new software.",
+  },
+
+  // ---- DTA Care: how DTA Care looks after it in each sector ----
+  "dta-care:turismo": {
+    problem:
+      "In high season a failure in online booking or syncing costs sales, and in low season nobody checks the systems until something breaks.",
+    solution: [
+      "Availability monitoring of online booking and connectors",
+      "A pre-high-season review so everything is up to date",
+      "Incident handling with an agreed response time",
+      "Incremental adjustments and improvements throughout the year",
+    ],
+    example:
+      "A tour operator signed up for ongoing care of its booking system. Before high season dependencies were updated and connectors tested, and during the year small adjustments were handled without opening a new project.",
+  },
+  "dta-care:hoteleria": {
+    problem:
+      "If syncing between the PMS and channels fails on a weekend, the hotel finds out when a duplicate booking already exists.",
+    solution: [
+      "Alerts when an integration stops or drifts out of sync",
+      "Security updates for connected systems",
+      "Incident support with an agreed response",
+      "A periodic report on the state of your systems",
+    ],
+    example:
+      "A boutique hotel added monitoring to its integrations. When a connector stopped syncing rates, the alert arrived before it affected a booking and it was fixed the same day.",
+  },
+  "dta-care:inmobiliario": {
+    problem:
+      "The CRM and the site grow with every campaign, but nobody maintains them: forms that stop arriving, outdated integrations and catalogs with errors.",
+    solution: [
+      "Verification that every form still reaches the CRM",
+      "Maintenance of the catalog and integrations",
+      "Backups and security updates",
+      "Incremental improvements per campaign or new project",
+    ],
+    example:
+      "A real estate agency keeps its catalog and CRM with DTA Care. When a contact form stopped delivering requests after an update, monitoring caught it and it was fixed before prospects were lost.",
+  },
+  "dta-care:servicios": {
+    problem:
+      "Internal systems depend on one person who no longer has time, and small errors pile up until they become a problem.",
+    solution: [
+      "An outside team that knows the system and responds to failures",
+      "Preventive maintenance so you don't depend on emergencies",
+      "Minor adjustments included as the process changes",
+      "Up-to-date documentation, so nobody has to rely on memory",
+    ],
+    example:
+      "A services company left maintenance of its quoting and scheduling system with DTA Care. Small adjustments are handled within the plan and its team focuses on serving clients, not fixing tools.",
   },
 };
 

@@ -164,7 +164,10 @@
     "missionText": "Ayudar a las empresas a entender sus procesos, conectar sus sistemas, automatizar tareas y convertir sus datos en decisiones mediante tecnología diseñada alrededor de sus necesidades reales.",
     "locationHeadline": "Tecnología construida desde el corazón de uno de los mercados más dinámicos de México.",
     "finalCtaTitle": "Cuéntanos qué quieres mejorar.",
-    "finalCtaText": "No necesitas saber qué tecnología necesitas. Nosotros te ayudamos a descubrirlo."
+    "finalCtaText": "No necesitas saber qué tecnología necesitas. Nosotros te ayudamos a descubrirlo.",
+    "whyLead": "Lo que nos distingue en el trabajo diario.",
+    "missionModule": "dta/mision",
+    "locationModule": "dta/ubicacion"
   },
   "dtaCarePage": {
     "eyebrow": "DTA Care",
@@ -186,7 +189,17 @@
     "include4": "Ajustes menores y mejoras incrementales incluidas",
     "include5": "Reporte periódico del estado de tus sistemas",
     "note": "DTA Care está pensado para sistemas que DTA ya construyó o conoce a fondo. Si tu sistema fue desarrollado por otro proveedor, hablemos primero de un diagnóstico para evaluar si aplica.",
-    "finalCtaTitle": "¿Quieres que cuidemos tus sistemas?"
+    "finalCtaTitle": "¿Quieres que cuidemos tus sistemas?",
+    "itemsTitle": "Cómo cuidamos tus sistemas",
+    "itemsLead": "Cuatro frentes que mantienen tu operación funcionando y creciendo.",
+    "includesModule": "dta/incluye",
+    "includesLead": "Lo que cubre el plan mensual.",
+    "noteTitle": "Importante",
+    "sectorsTitle": "Sectores donde más aplica",
+    "sectorsIntro": "Elige un sector para ver cómo se cuida un sistema en esa operación.",
+    "sectorSolution": "Cómo lo cuida DTA Care",
+    "ctaText": "Cuéntanos qué sistemas tienes y te decimos cómo los cuidamos.",
+    "ctaSecondary": "Empezar con un diagnóstico"
   },
   "solucionesHub": {
     "eyebrow": "Soluciones",
@@ -247,7 +260,15 @@
     "benefit1": "Sabrás exactamente qué automatizar o integrar primero, sin adivinar.",
     "benefit2": "Evitas invertir en tecnología que no resuelve tu problema real.",
     "benefit3": "Tienes un documento para alinear a tu equipo directivo.",
-    "finalCtaTitle": "¿Listo para saber por dónde empezar?"
+    "finalCtaTitle": "¿Listo para saber por dónde empezar?",
+    "analyzeLead": "Las tres áreas que revisamos para entender cómo opera tu empresa.",
+    "receiveLead": "Lo que te llevas al terminar el diagnóstico.",
+    "receiveModule": "dta/entregables",
+    "benefitsLead": "Por qué empezar por un diagnóstico.",
+    "sectorsTitle": "Sectores donde más aplica",
+    "sectorsIntro": "Elige un sector para ver la problemática típica y qué descubre el diagnóstico.",
+    "sectorSolution": "Qué descubre el diagnóstico",
+    "ctaText": "Empezamos con una llamada para entender tu contexto y definir el alcance."
   },
   "sectoresHub": {
     "eyebrow": "Sectores",

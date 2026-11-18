@@ -164,7 +164,10 @@
     "missionText": "Help businesses understand their processes, connect their systems, automate tasks and turn their data into decisions through technology designed around their real needs.",
     "locationHeadline": "Technology built from the heart of one of Mexico's most dynamic markets.",
     "finalCtaTitle": "Tell us what you want to improve.",
-    "finalCtaText": "You don't need to know what technology you need. We'll help you figure it out."
+    "finalCtaText": "You don't need to know what technology you need. We'll help you figure it out.",
+    "whyLead": "What sets us apart in day-to-day work.",
+    "missionModule": "dta/mission",
+    "locationModule": "dta/location"
   },
   "dtaCarePage": {
     "eyebrow": "DTA Care",
@@ -186,7 +189,17 @@
     "include4": "Minor adjustments and incremental improvements included",
     "include5": "Periodic report on your systems' status",
     "note": "DTA Care is designed for systems that DTA already built or knows in depth. If your system was developed by another provider, let's start with a diagnosis to see if it applies.",
-    "finalCtaTitle": "Want us to take care of your systems?"
+    "finalCtaTitle": "Want us to take care of your systems?",
+    "itemsTitle": "How we look after your systems",
+    "itemsLead": "Four fronts that keep your operation running and growing.",
+    "includesModule": "dta/includes",
+    "includesLead": "What the monthly plan covers.",
+    "noteTitle": "Important",
+    "sectorsTitle": "Sectors where it applies most",
+    "sectorsIntro": "Pick a sector to see how a system is looked after in that operation.",
+    "sectorSolution": "How DTA Care looks after it",
+    "ctaText": "Tell us which systems you have and we will tell you how we look after them.",
+    "ctaSecondary": "Start with an assessment"
   },
   "solucionesHub": {
     "eyebrow": "Solutions",
@@ -247,7 +260,15 @@
     "benefit1": "You'll know exactly what to automate or integrate first, without guessing.",
     "benefit2": "You avoid investing in technology that doesn't solve your real problem.",
     "benefit3": "You have a document to align your leadership team.",
-    "finalCtaTitle": "Ready to know where to start?"
+    "finalCtaTitle": "Ready to know where to start?",
+    "analyzeLead": "The three areas we review to understand how your company operates.",
+    "receiveLead": "What you take with you when the assessment ends.",
+    "receiveModule": "dta/deliverables",
+    "benefitsLead": "Why start with an assessment.",
+    "sectorsTitle": "Sectors where it applies most",
+    "sectorsIntro": "Pick a sector to see the typical challenge and what the assessment uncovers.",
+    "sectorSolution": "What the assessment uncovers",
+    "ctaText": "We start with a call to understand your context and define the scope."
   },
   "sectoresHub": {
     "eyebrow": "Sectors",

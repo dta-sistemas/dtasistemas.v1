@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Headphones, Activity, Wrench, TrendingUp, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -8,7 +8,12 @@ import { buildServiceSchema, buildBreadcrumbSchema } from "@/lib/seo/schema";
 import { buildAlternates } from "@/lib/seo/alternates";
 import type { AppLocale } from "@/i18n/routing";
 import { PageHero, HeroPanel } from "@/components/sections/PageHero";
-import { CTABand } from "@/components/sections/CTABand";
+import { ConversionCTA } from "@/components/sections/ConversionCTA";
+import { NumberedGrid, ChecklistPanel } from "@/components/sections/NumberedBlocks";
+import { SolutionVisual } from "@/components/sections/SolutionVisual";
+import { SolutionSectorsTabs, type SectorTabItem } from "@/components/sections/SolutionSectorsTabs";
+import { getSolutionSectorCase } from "@/data/solutionSectors";
+import { getLocalizedSectors } from "@/lib/i18n/localizedContent";
 
 type Props = { params: Promise<{ locale: AppLocale }> };
 
@@ -23,13 +28,19 @@ export default async function DTACarePage({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "dtaCarePage" });
   const tc = await getTranslations({ locale, namespace: "common" });
+  const tSol = await getTranslations({ locale, namespace: "solutionDetail" });
 
   const careItems = [
-    { icon: Headphones, title: t("item1Title"), description: t("item1Text") },
-    { icon: Activity, title: t("item2Title"), description: t("item2Text") },
-    { icon: Wrench, title: t("item3Title"), description: t("item3Text") },
-    { icon: TrendingUp, title: t("item4Title"), description: t("item4Text") },
+    { title: t("item1Title"), description: t("item1Text") },
+    { title: t("item2Title"), description: t("item2Text") },
+    { title: t("item3Title"), description: t("item3Text") },
+    { title: t("item4Title"), description: t("item4Text") },
   ];
+
+  const sectorTabs: SectorTabItem[] = getLocalizedSectors(locale).map((s) => {
+    const c = getSolutionSectorCase("dta-care", s.slug, locale);
+    return { slug: s.slug, name: s.name, href: s.href, problem: c?.problem ?? s.problems[0], solution: c?.solution ?? [], example: c?.example };
+  });
   const includes = [t("include1"), t("include2"), t("include3"), t("include4"), t("include5")];
 
   return (
@@ -69,30 +80,65 @@ export default async function DTACarePage({ params }: Props) {
         }
       />
 
+
+      {/* Cómo cuidamos tus sistemas: cuatro frentes con numeral grande */}
       <Section tone="light">
-        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-5">
-          {careItems.map((it) => (
-            <div key={it.title} className="border-t border-dta-black pt-5">
-              <div className="font-serif text-xl text-dta-black">{it.title}</div>
-              <p className="mt-1.5 text-sm leading-relaxed text-dta-gray-600">{it.description}</p>
-            </div>
-          ))}
+        <div className="max-w-2xl">
+          <h2 className="text-h2 text-dta-black">{t("itemsTitle")}</h2>
+          <p className="mt-3 text-body-lg text-dta-gray-600">{t("itemsLead")}</p>
+        </div>
+        <NumberedGrid items={careItems.map((it) => ({ title: it.title, text: it.description }))} />
+      </Section>
+
+      {/* Qué incluye: bloque azul marino con el panel de disponibilidad */}
+      <Section tone="subtle">
+        <ChecklistPanel
+          module={t("includesModule")}
+          title={t("includesTitle")}
+          lead={t("includesLead")}
+          items={includes}
+          extra={<SolutionVisual slug="dta-care" className="rounded-md border border-white/10" />}
+        />
+        <div className="mt-5 rounded-card border border-dta-gray-200 bg-white p-6 md:p-8">
+          <div className="text-sm font-semibold text-dta-gray-600">{t("noteTitle")}</div>
+          <p className="mt-2 max-w-3xl leading-relaxed text-dta-black">{t("note")}</p>
         </div>
       </Section>
 
-      <Section tone="subtle">
-        <h2 className="text-h3 text-dta-black mb-4">{t("includesTitle")}</h2>
-        <ul className="space-y-3 max-w-xl">
-          {includes.map((item) => (
-            <li key={item} className="flex items-start gap-2.5 text-[15px] text-dta-black/80">
-              <CheckCircle2 size={15} className="text-dta-blue-600 shrink-0 mt-0.5" aria-hidden="true" /> {item}
-            </li>
-          ))}
-        </ul>
-        <p className="mt-6 max-w-xl text-sm text-dta-gray-600">{t("note")}</p>
+      {/* Sectores donde más aplica */}
+      <Section tone="light">
+        <div className="mb-10 max-w-2xl">
+          <h2 className="text-h2 text-dta-black">{t("sectorsTitle")}</h2>
+          <p className="mt-3 text-body-lg text-dta-gray-600">{t("sectorsIntro")}</p>
+        </div>
+        <SolutionSectorsTabs
+          idPrefix="care"
+          items={sectorTabs}
+          labels={{
+            problem: tSol("sectorProblem"),
+            solution: t("sectorSolution"),
+            example: tSol("sectorExample"),
+            illustrative: tSol("sectorIllustrative"),
+            viewSector: tc("verSector"),
+          }}
+        />
       </Section>
 
-      <CTABand title={t("finalCtaTitle")} href="/contacto?intent=care" label={t("cta")} />
+      <ConversionCTA
+        locale={locale}
+        title={t("finalCtaTitle")}
+        text={t("ctaText")}
+        source="care-page"
+        moduleLabel="dta/care"
+        includesTitle={t("includesTitle")}
+        includes={includes.slice(0, 3)}
+        price="$2,500"
+        priceSuffix={locale === "en" ? "MXN / month" : "MXN / mes"}
+        primaryHref="/contacto?intent=care"
+        primaryLabel={t("cta")}
+        secondaryHref="/soluciones/dta-digital-audit"
+        secondaryLabel={t("ctaSecondary")}
+      />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Search, CheckCircle2, Users, ClipboardList, Sparkles } from "lucide-react";
+import { Search, CheckCircle2, Users, ClipboardList } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { ProcessStep } from "@/components/ui/ProcessStep";
@@ -9,7 +9,11 @@ import { buildServiceSchema, buildBreadcrumbSchema } from "@/lib/seo/schema";
 import { buildAlternates } from "@/lib/seo/alternates";
 import type { AppLocale } from "@/i18n/routing";
 import { PageHero, HeroPanel } from "@/components/sections/PageHero";
-import { CTABand } from "@/components/sections/CTABand";
+import { ConversionCTA } from "@/components/sections/ConversionCTA";
+import { NumberedGrid, ChecklistPanel } from "@/components/sections/NumberedBlocks";
+import { SolutionSectorsTabs, type SectorTabItem } from "@/components/sections/SolutionSectorsTabs";
+import { getSolutionSectorCase } from "@/data/solutionSectors";
+import { getLocalizedSectors } from "@/lib/i18n/localizedContent";
 import { AuditPreview } from "@/components/sections/DigitalAudit";
 
 type Props = { params: Promise<{ locale: AppLocale }> };
@@ -26,6 +30,7 @@ export default async function DigitalAuditPage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: "auditPage" });
   const tc = await getTranslations({ locale, namespace: "common" });
   const tHub = await getTranslations({ locale, namespace: "solucionesHub" });
+  const tSol = await getTranslations({ locale, namespace: "solutionDetail" });
 
   const analysisItems = [
     { icon: ClipboardList, title: t("analyze1Title"), text: t("analyze1Text") },
@@ -40,6 +45,11 @@ export default async function DigitalAuditPage({ params }: Props) {
     { title: t("process4Title"), description: t("process4Text") },
   ];
   const benefits = [t("benefit1"), t("benefit2"), t("benefit3")];
+
+  const sectorTabs: SectorTabItem[] = getLocalizedSectors(locale).map((s) => {
+    const c = getSolutionSectorCase("dta-digital-audit", s.slug, locale);
+    return { slug: s.slug, name: s.name, href: s.href, problem: c?.problem ?? s.problems[0], solution: c?.solution ?? [], example: c?.example };
+  });
 
   return (
     <div>
@@ -84,34 +94,31 @@ export default async function DigitalAuditPage({ params }: Props) {
         }
       />
 
-      <Section tone="light">
-        <h2 className="text-h3 text-dta-black mb-2">{t("whoTitle")}</h2>
-        <p className="text-dta-gray-600 max-w-2xl mb-8">{t("whoText")}</p>
 
-        <h2 className="text-h3 text-dta-black mb-4">{t("analyzeTitle")}</h2>
-        <div className="grid sm:grid-cols-3 gap-5">
-          {analysisItems.map((it) => (
-            <div key={it.title} className="border-t border-dta-black pt-5">
-              <div className="font-serif text-xl text-dta-black">{it.title}</div>
-              <p className="mt-1.5 text-sm leading-relaxed text-dta-gray-600">{it.text}</p>
-            </div>
-          ))}
+      {/* Para quién es y qué analizamos */}
+      <Section tone="light">
+        <div className="max-w-3xl">
+          <h2 className="text-h2 text-dta-black">{t("whoTitle")}</h2>
+          <p className="mt-4 font-serif text-2xl leading-snug text-dta-gray-700 md:text-[1.75rem]">{t("whoText")}</p>
         </div>
+        <div className="mt-16 max-w-2xl">
+          <h2 className="text-h2 text-dta-black">{t("analyzeTitle")}</h2>
+          <p className="mt-3 text-body-lg text-dta-gray-600">{t("analyzeLead")}</p>
+        </div>
+        <NumberedGrid
+          className="md:grid-cols-3"
+          items={analysisItems.map((it) => ({ title: it.title, text: it.text }))}
+        />
       </Section>
 
+      {/* Qué recibe tu empresa: bloque azul marino */}
       <Section tone="subtle">
-        <h2 className="text-h3 text-dta-black mb-4">{t("receiveTitle")}</h2>
-        <ul className="space-y-3 max-w-xl">
-          {receives.map((r) => (
-            <li key={r} className="flex items-start gap-2.5 text-[15px] text-dta-black/80">
-              <CheckCircle2 size={15} className="text-dta-blue-600 shrink-0 mt-0.5" aria-hidden="true" /> {r}
-            </li>
-          ))}
-        </ul>
+        <ChecklistPanel module={t("receiveModule")} title={t("receiveTitle")} lead={t("receiveLead")} items={receives} />
       </Section>
 
+      {/* Proceso */}
       <Section tone="light">
-        <h2 className="mb-10 text-h3 text-dta-black">{t("processTitle")}</h2>
+        <h2 className="mb-12 text-h2 text-dta-black">{t("processTitle")}</h2>
         <ol className="grid gap-6 md:grid-cols-[repeat(auto-fit,minmax(0,1fr))]">
           {process.map((s, i) => (
             <ProcessStep key={s.title} number={String(i + 1)} title={s.title} description={s.description} isLast={i === process.length - 1} />
@@ -119,23 +126,38 @@ export default async function DigitalAuditPage({ params }: Props) {
         </ol>
       </Section>
 
+      {/* Beneficios + vista previa del reporte */}
       <Section tone="subtle">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
+        <div className="grid items-center gap-12 md:grid-cols-2 md:gap-16">
           <div>
-            <h2 className="text-h3 text-dta-black mb-4">{t("benefitsTitle")}</h2>
-            <ul className="space-y-3">
-              {benefits.map((b) => (
-                <li key={b} className="flex items-start gap-2.5 text-[15px] text-dta-black/80">
-                  <Sparkles size={15} className="text-dta-blue-600 shrink-0 mt-0.5" aria-hidden="true" /> {b}
-                </li>
-              ))}
-            </ul>
+            <h2 className="text-h2 text-dta-black">{t("benefitsTitle")}</h2>
+            <p className="mt-3 text-body-lg text-dta-gray-600">{t("benefitsLead")}</p>
+            <NumberedGrid className="md:grid-cols-1" items={benefits.map((b) => ({ text: b }))} />
           </div>
           <AuditPreview />
         </div>
       </Section>
 
-      <CTABand title={t("finalCtaTitle")} href="/contacto?intent=audit" label={tc("solicitarDiagnostico")} />
+      {/* Sectores donde más aplica */}
+      <Section tone="light">
+        <div className="mb-10 max-w-2xl">
+          <h2 className="text-h2 text-dta-black">{t("sectorsTitle")}</h2>
+          <p className="mt-3 text-body-lg text-dta-gray-600">{t("sectorsIntro")}</p>
+        </div>
+        <SolutionSectorsTabs
+          idPrefix="audit"
+          items={sectorTabs}
+          labels={{
+            problem: tSol("sectorProblem"),
+            solution: t("sectorSolution"),
+            example: tSol("sectorExample"),
+            illustrative: tSol("sectorIllustrative"),
+            viewSector: tc("verSector"),
+          }}
+        />
+      </Section>
+
+      <ConversionCTA locale={locale} title={t("finalCtaTitle")} text={t("ctaText")} source="audit-page" />
     </div>
   );
 }
