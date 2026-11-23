@@ -48,7 +48,7 @@ export const LEGAL = {
  * Mientras esté vacío, el botón de WhatsApp NO se muestra en ninguna parte.
  * TODO: completar con el número real de DTA.
  */
-export const WHATSAPP_NUMBER: string | undefined = undefined;
+export const WHATSAPP_NUMBER: string | undefined = '52 998 308 1065';
 
 /**
  * Contacto DIRECTO del Linktree (/dta-linktree). Es independiente del contacto del sitio
