@@ -34,7 +34,7 @@ export const LEGAL = {
   entityName: "[RAZÓN SOCIAL COMPLETA]",
   tradeName: "DTA Sistemas",
   /** Domicilio completo (calle, número, colonia, C.P.) — el aviso de privacidad debe incluirlo. */
-  address: "[DOMICILIO COMPLETO], Cancún, Quintana Roo, México",
+  address: "Benito Juarez, Cancún, Quintana Roo, México",
   /** Correo para solicitudes ARCO y dudas de privacidad. Conviene uno dedicado, ej. privacidad@dtasistemas.com */
   privacyEmail: "contacto@dtasistemas.com",
   /** Jurisdicción de los tribunales competentes. */
@@ -48,7 +48,7 @@ export const LEGAL = {
  * Mientras esté vacío, el botón de WhatsApp NO se muestra en ninguna parte.
  * TODO: completar con el número real de DTA.
  */
-export const WHATSAPP_NUMBER: string | undefined = '52 998 308 1065';
+export const WHATSAPP_NUMBER: string | undefined = '529983081065';
 
 /**
  * Contacto DIRECTO del Linktree (/dta-linktree). Es independiente del contacto del sitio
